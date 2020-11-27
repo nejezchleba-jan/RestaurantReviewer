@@ -5,6 +5,16 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <!--App colors-->
+    <color name="orange">#EF6C00</color>
+    <color name="dark_gray">#303030</color>
+    <color name="light_gray">#383838</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="control_gray">#AEAEAE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Food ratings-->
+    <color name="high_rating">#3BAE3B</color>
+    <color name="medium_rating">#FFFF00</color>
+    <color name="low_rating">#FF0000</color>
 </resources>

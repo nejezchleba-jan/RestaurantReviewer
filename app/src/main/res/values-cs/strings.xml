@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Restaurant Reviewer</string>
-    <string name="title_restaurants">Restaurants</string>
-    <string name="title_food">Food</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_restaurants">Restaurace</string>
+    <string name="title_food">Jídla</string>
+    <string name="title_settings">Nastavení</string>
     <string name="name">Name</string>
     <string name="location">Location</string>
     <string name="type">Type</string>

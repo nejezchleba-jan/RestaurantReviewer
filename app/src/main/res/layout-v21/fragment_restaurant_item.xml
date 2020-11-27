@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/rounded_item">
+
+    <ImageView
+        android:id="@+id/image_restaurant"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/control_gray"
+        tools:srcCompat="@drawable/ic_image" />
+
+    <TextView
+        android:id="@+id/name_restaurant"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Název restaurace"
+        app:layout_constraintStart_toEndOf="@+id/image_restaurant"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/location_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Olomouc"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/image_restaurant"
+        app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/light_gray"
+        android:numStars="5"
+        android:progressTint="@color/yellow"
+        android:rating="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_restaurant"
+        app:layout_constraintTop_toBottomOf="@+id/location_restaurant" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_layout"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_more"
+            android:layout_width="match_parent"
+            android:background="@drawable/rounded_button"
+            android:drawableStart="@drawable/ic_more"
+            android:src="@drawable/ic_more"
+            android:layout_height="match_parent">
+
+        </androidx.appcompat.widget.AppCompatImageButton>
+
+        <include layout="@layout/restaurant_item_action_buttons" android:visibility="gone">
+        </include>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
