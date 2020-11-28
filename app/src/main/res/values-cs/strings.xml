@@ -7,4 +7,22 @@
     <string name="name">Name</string>
     <string name="location">Location</string>
     <string name="type">Type</string>
+    <string name="copyright">© 2011 Jan Nejezchleba \n All Rights Reserved</string>
+    <string name="app_version">App version</string>
+    <string name="restaurants_reviews">Restaurants reviews</string>
+    <string name="food_reviews">Food reviews</string>
+    <string name="favourite_restaurant">Favourite restaurant</string>
+    <string name="order">Order:</string>
+    <string name="order_by">Order by:</string>
+    <string name="info">Info</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="price">Price</string>
+    <string name="order_date">Order date</string>
+    <string name="order_date">Order date</string>
+    <string name="note">Note</string>
+    <string name="rate">Rate</string>
+    <string name="food">Food</string>
+    <string name="personnel">Personnel</string>
+    <string name="atmosphere">Atmosphere</string>
+    <string name="add_restaurant">Add restaurant</string>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currency">
+        <item>Kč</item>
+        <item>$</item>
+        <item>€</item>
+    </string-array>
+    <string-array name="restaurant_type">
+        <item>Cafe</item>
+        <item>Fast food restaurant</item>
+        <item>Pub</item>
+        <item>Restaurant</item>
+        <item>Sweet-shop</item>
+    </string-array>
+</resources>

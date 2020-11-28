@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:text="Název jídla"
+        android:text="Food name"
         app:layout_constraintStart_toEndOf="@+id/image_restaurant"
         app:layout_constraintTop_toTopOf="parent" />
 
