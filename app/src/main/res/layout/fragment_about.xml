@@ -10,7 +10,7 @@
         android:id="@+id/label_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About"
+        android:text="@string/about"
         android:layout_margin="20dp"
         android:gravity="center"
         android:fontFamily="sans-serif-light"

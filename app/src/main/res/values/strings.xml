@@ -28,4 +28,13 @@
     <string name="ratings">Ratings</string>
     <string name="food">Food</string>
     <string name="rating">Rating</string>
+    <string name="edit_food">Edit food</string>
+    <string name="picture_of_food">Picture of food</string>
+    <string name="delete_restaurant">Delete restaurant</string>
+    <string name="add_food">Add food</string>
+    <string name="restaurant_picture">Restaurant picture</string>
+    <string name="delete_food">Delete food</string>
+    <string name="confirm_edit">Confirm edit</string>
+    <string name="about">About</string>
+    <string name="list_options">List options</string>
 </resources>

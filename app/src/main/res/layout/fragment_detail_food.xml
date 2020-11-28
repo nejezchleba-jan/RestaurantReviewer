@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            app:layout_constraintBottom_toTopOf="@+id/icon_restaurant"
+            app:layout_constraintBottom_toTopOf="@+id/name_food"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,25 +33,12 @@
                 android:tint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <ImageView
-            android:id="@+id/icon_restaurant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_food"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/name_restaurant"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_actions"
-            app:tint="@color/white" />
-
         <TextView
-            android:id="@+id/name_restaurant"
+            android:id="@+id/name_food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/food"
@@ -63,7 +50,9 @@
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_restaurant">
+            app:layout_constraintTop_toBottomOf="@+id/layout_actions"
+            app:drawableTint=""
+            app:drawableTopCompat="@drawable/ic_food">
         </TextView>
 
         <ImageView
@@ -74,10 +63,11 @@
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/control_gray"
             android:src="@drawable/ic_image"
-            app:layout_constraintBottom_toTopOf="@+id/layout_location"
+            app:layout_constraintBottom_toTopOf="@+id/layout_restaurant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_restaurant" />
+            app:layout_constraintTop_toBottomOf="@id/name_food"
+            android:contentDescription="@string/edit_food" />
 
         <LinearLayout
             android:id="@+id/layout_restaurant"
@@ -91,38 +81,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_food">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/location"
-                    android:src="@drawable/ic_restaurant"
-                    app:tint="@color/white">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/label_restaurant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/restaurant"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTopCompat="@drawable/ic_restaurant"
+                    app:drawableTint="@color/white" />
 
             <TextView
                 android:id="@+id/text_restaurant"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_margin="10dp"
                 android:layout_weight="3"
                 android:text="U Terezky"
@@ -143,37 +119,24 @@
             android:weightSum="4"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_money"
-                    app:tint="@color/white">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/label_price"
+                    app:drawableTopCompat="@drawable/ic_money"
+                    app:drawableTint="@color/white"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/price"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
 
             <TextView
                 android:id="@+id/text_price"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_margin="10dp"
                 android:text="120 Kč"
                 android:textAlignment="textEnd"
@@ -194,38 +157,22 @@
             android:weightSum="4"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_calendar"
-                app:tint="@color/white"
-                android:contentDescription="@string/note">
-
-            </ImageView>
-
             <TextView
                 android:id="@+id/label_ordered"
+                app:drawableTopCompat="@drawable/ic_calendar"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/order_date"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:drawableTint="@color/white" />
         <TextView
                 android:id="@+id/text_ordered"
                 android:layout_width="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="1. 1. 2020"
                 android:textAlignment="textStart"
                 android:textSize="20sp"
@@ -245,39 +192,23 @@
             android:weightSum="4"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_note"
-                    app:tint="@color/white"
-                    android:contentDescription="@string/note">
-
-                </ImageView>
-
                 <TextView
                     android:id="@+id/label_note"
                     android:layout_width="wrap_content"
+                    app:drawableTopCompat="@drawable/ic_note"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:text="@string/note"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:drawableTint="@color/white" />
 
             <TextView
                 android:id="@+id/text_note"
                 android:layout_width="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="..."
                 android:textAlignment="textStart"
                 android:textSize="20sp"
@@ -296,7 +227,7 @@
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_note"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/layout_note" />
 
         <TextView
             android:id="@+id/rate_food"

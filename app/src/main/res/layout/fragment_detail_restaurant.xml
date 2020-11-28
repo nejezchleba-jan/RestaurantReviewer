@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            app:layout_constraintBottom_toTopOf="@+id/icon_restaurant"
+            app:layout_constraintBottom_toTopOf="@+id/name_restaurant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,33 +37,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <ImageView
-        android:id="@+id/icon_restaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_restaurant"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/name_restaurant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_actions"
-        app:tint="@color/white" />
-
     <TextView
         android:id="@+id/name_restaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_restaurant"
+        android:drawableTint="@color/white"
+        android:gravity="center"
         android:text="@string/restaurant"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:gravity="center"
         android:fontFamily="sans-serif-light"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_restaurant">
+        app:layout_constraintTop_toBottomOf="@+id/layout_actions">
     </TextView>
 
         <ImageView
@@ -86,48 +75,30 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_food">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/location"
-                    android:src="@drawable/ic_location"
-                    app:tint="@color/white">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/label_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_location"
+                    android:drawableTint="@color/white"
+                    android:gravity="center"
                     android:text="@string/location"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/text_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_weight="3"
                 android:text="Olomouc"
                 android:textAlignment="textEnd"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -143,32 +114,19 @@
         android:weightSum="4"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_restaurant_type"
-                app:tint="@color/white">
-
-            </ImageView>
 
             <TextView
                 android:id="@+id/label_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_restaurant_type"
+                android:drawableTint="@color/white"
+                android:gravity="center"
                 android:text="@string/type"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
+
 
         <TextView
             android:id="@+id/text_type"
@@ -194,33 +152,18 @@
         android:weightSum="4"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_note"
-                app:tint="@color/white"
-                android:contentDescription="@string/note">
-
-            </ImageView>
 
             <TextView
                 android:id="@+id/label_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:drawableTopCompat="@drawable/ic_note"
+                android:drawableTint="@color/white"
+                android:gravity="center"
                 android:text="@string/note"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/text_note"

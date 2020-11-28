@@ -33,7 +33,8 @@
                 android:src="@drawable/ic_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/delete_food" />
 
             <ImageButton
                 android:id="@+id/button_confirm_restaurant"
@@ -46,7 +47,8 @@
                 android:src="@drawable/ic_done"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/confirm_edit">
 
             </ImageButton>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -78,32 +80,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_info">
 
-            <LinearLayout
-                android:id="@+id/layout_restaurant"
+
+            <TextView
+                android:id="@+id/label_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/restaurant"
+                android:textColor="@color/white"
+                app:drawableTopCompat="@drawable/ic_restaurant"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_restaurant"
-                    app:tint="@color/white">
-
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/label_restaurant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/restaurant"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:drawableTint="@color/white" />
 
             <Spinner
                 android:id="@+id/spinner_type"
@@ -115,7 +104,7 @@
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_restaurant"
+                app:layout_constraintTop_toBottomOf="@+id/label_restaurant"
                 android:theme="@style/MySpinnerStyle"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -124,14 +113,15 @@
             android:id="@+id/image_food"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/control_gray"
             android:src="@drawable/ic_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/restaurant"
-            app:layout_constraintBottom_toTopOf="@id/name" />
+            app:layout_constraintBottom_toTopOf="@id/name"
+            android:contentDescription="@string/picture_of_food" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/name"
@@ -143,32 +133,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_food">
 
-            <LinearLayout
-                android:id="@+id/layout_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_food"
-                    app:tint="@color/white">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/label_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
                     android:textColor="@color/white"
+                    app:drawableTopCompat="@drawable/ic_food"
+                    android:gravity="center"
+                    android:text="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/text_name"
+                    app:drawableTint="@color/white" />
 
 
             <EditText
@@ -182,7 +159,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_name"
+                app:layout_constraintTop_toBottomOf="@+id/label_name"
                 android:autofillHints="" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -198,33 +175,19 @@
             app:layout_constraintTop_toBottomOf="@id/name">
 
 
-            <LinearLayout
-                android:id="@+id/layout_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/price"
-                    android:src="@drawable/ic_money"
-                    app:tint="@color/white">
-
-                </ImageView>
 
                 <TextView
-                    android:id="@+id/label_location"
+                    android:id="@+id/label_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:drawableTopCompat="@drawable/ic_money"
+                    android:gravity="center"
                     android:text="@string/price"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/layout_value_price"
+                    app:drawableTint="@color/white" />
 
             <LinearLayout
                 android:id="@+id/layout_value_price"
@@ -233,7 +196,7 @@
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_price">
+                app:layout_constraintTop_toBottomOf="@+id/label_price">
 
             <EditText
                 android:id="@+id/text_price"
@@ -246,7 +209,8 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/spinner_currency"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_value_price" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_value_price"
+                android:importantForAutofill="no" />
 
             <Spinner
                 android:id="@+id/spinner_currency"
@@ -275,34 +239,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/price">
 
-
-            <LinearLayout
-                android:id="@+id/layout_ordered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/order_date"
-                    android:src="@drawable/ic_calendar"
-                    app:tint="@color/white">
-
-                </ImageView>
-
                 <TextView
                     android:id="@+id/label_ordered"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:drawableTopCompat="@drawable/ic_calendar"
+                    android:gravity="center"
                     android:text="@string/order_date"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/date_ordered"
+                    app:drawableTint="@color/white" />
 
             <DatePicker
                 android:id="@+id/date_ordered"
@@ -315,7 +263,7 @@
                 android:theme="@style/MyDatePicker"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_ordered">
+                app:layout_constraintTop_toBottomOf="@+id/label_ordered">
 
             </DatePicker>
 
@@ -331,33 +279,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ordered">
 
-            <LinearLayout
-                android:id="@+id/layout_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_note"
-                    app:tint="@color/white"
-                    android:contentDescription="@string/note">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/label_note"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:drawableTopCompat="@drawable/ic_note"
+                    android:gravity="center"
                     android:text="@string/note"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </LinearLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/text_note"
+                    app:drawableTint="@color/white" />
 
             <EditText
                 android:id="@+id/text_note"
@@ -370,7 +304,8 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_note" />
+                app:layout_constraintTop_toBottomOf="@+id/label_note"
+                android:importantForAutofill="no" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -425,7 +360,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAutofill="no">
 
                 </EditText>
 
@@ -436,7 +372,8 @@
                     android:backgroundTint="@color/dark_gray"
                     android:src="@drawable/ic_arrow_up"
                     app:layout_constraintStart_toEndOf="@+id/rate_food"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/rate">
 
                 </ImageButton>
 
@@ -448,7 +385,8 @@
                     android:src="@drawable/ic_arrow_down"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/rate_food"
-                    app:layout_constraintTop_toBottomOf="@+id/button_rate_up">
+                    app:layout_constraintTop_toBottomOf="@+id/button_rate_up"
+                    android:contentDescription="@string/rate">
 
                 </ImageButton>
             </androidx.constraintlayout.widget.ConstraintLayout>
