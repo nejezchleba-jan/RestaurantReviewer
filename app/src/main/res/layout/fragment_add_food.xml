@@ -352,7 +352,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:ems="15"
-                android:gravity="center"
+                android:gravity="start"
                 android:inputType="textMultiLine"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"

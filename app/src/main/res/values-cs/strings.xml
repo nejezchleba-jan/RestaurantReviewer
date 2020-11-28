@@ -25,4 +25,8 @@
     <string name="personnel">Personnel</string>
     <string name="atmosphere">Atmosphere</string>
     <string name="add_restaurant">Add restaurant</string>
+    <string name="about">About</string>
+    <string name="ratings">Ratings</string>
+    <string name="food">Food</string>
+    <string name="rating">Rating</string>
 </resources>
