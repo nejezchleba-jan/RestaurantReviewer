@@ -17,16 +17,13 @@
     <string name="restaurant">Restaurant</string>
     <string name="price">Price</string>
     <string name="order_date">Order date</string>
-    <string name="order_date">Order date</string>
     <string name="note">Note</string>
     <string name="rate">Rate</string>
     <string name="food">Food</string>
     <string name="personnel">Personnel</string>
     <string name="atmosphere">Atmosphere</string>
     <string name="add_restaurant">Add restaurant</string>
-    <string name="about">About</string>
     <string name="ratings">Ratings</string>
-    <string name="food">Food</string>
     <string name="rating">Rating</string>
     <string name="edit_food">Edit food</string>
     <string name="picture_of_food">Picture of food</string>
