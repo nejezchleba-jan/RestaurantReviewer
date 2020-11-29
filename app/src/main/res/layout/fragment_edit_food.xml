@@ -160,7 +160,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_name"
-                android:autofillHints="" />
+                android:importantForAutofill="no" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -203,9 +203,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:ems="11"
-                android:gravity="center"
-                android:inputType="number"
+                android:gravity="end"
+                android:minEms="6"
+                android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/spinner_currency"
                 app:layout_constraintStart_toStartOf="parent"

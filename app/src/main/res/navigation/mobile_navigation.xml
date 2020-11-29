@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_food" />
 
     <fragment
-        android:id="@+id/navigation_settings"
+        android:id="@+id/navigation_about"
         android:name="com.example.restaurantreviewer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

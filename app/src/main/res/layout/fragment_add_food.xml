@@ -189,28 +189,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:ems="11"
-                android:gravity="center"
-                android:inputType="number"
+                android:ems="6"
+                android:gravity="end"
+                android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/spinner_currency"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_value_price"
                 android:importantForAutofill="no" />
 
-            <Spinner
-                android:id="@+id/spinner_currency"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:entries="@array/currency"
-                android:backgroundTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_price"
-                app:layout_constraintTop_toBottomOf="@+id/layout_value_price"
-                android:theme="@style/MySpinnerStyle">
+                <Spinner
+                    android:id="@+id/spinner_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:entries="@array/currency"
+                    android:gravity="center"
+                    android:theme="@style/MySpinnerStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_price"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_value_price">
 
-            </Spinner>
+                </Spinner>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
