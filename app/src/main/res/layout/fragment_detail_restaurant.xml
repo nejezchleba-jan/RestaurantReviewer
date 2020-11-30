@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_actions"
             android:layout_width="match_parent"
@@ -22,13 +23,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/button_edit_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_delete"
+                android:contentDescription="@string/detail_food"
+                android:scaleX="1.8"
+                android:scaleY="1.8"
+                android:src="@drawable/ic_food"
+                android:tint="@color/orange"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
                 android:id="@+id/button_edit_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/rounded_delete"
-                android:scaleX="1.8"
-                android:scaleY="1.8"
+                android:scaleX="2"
+                android:scaleY="2"
                 android:src="@drawable/ic_edit"
                 android:tint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"

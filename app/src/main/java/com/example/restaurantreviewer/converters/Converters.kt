@@ -3,22 +3,26 @@ package com.example.restaurantreviewer.converters
 import androidx.room.TypeConverter
 import com.example.restaurantreviewer.enums.FoodCurrencyEnum
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class Converters {
     companion object {
-        //INSTANT CONVERTER
+        //DATE CONVERTER
         @TypeConverter
         @JvmStatic
-        fun fromInstant(value: Instant): Long {
-            return value.toEpochMilli()
+        fun toDate(stringDate: String): LocalDate {
+            return LocalDate.parse(stringDate, DateTimeFormatter.ISO_DATE)
         }
 
         @TypeConverter
         @JvmStatic
-        fun toInstant(value: Long): Instant {
-            return Instant.ofEpochMilli(value)
+        fun toString(date: LocalDate): String {
+            return SimpleDateFormat("dd/MM/yyyy").format(date)
         }
 
         //DATE CONVERTER

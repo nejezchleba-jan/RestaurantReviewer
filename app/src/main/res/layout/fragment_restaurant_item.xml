@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    &lt;!&ndash;<data>
+        <variable
+            name="restaurant"
+            type="com.example.restaurantreviewer.model.Restaurant" />
+    </data>&ndash;&gt;-->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_margin="10dp"
-    android:background="@drawable/rounded_item">
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/header_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="start"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
 
     <ImageView
         android:id="@+id/image_restaurant"
         android:layout_width="80dp"
         android:layout_height="match_parent"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/control_gray"
-        tools:srcCompat="@drawable/ic_image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name_restaurant"
@@ -25,7 +56,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:text="Název"
         app:layout_constraintStart_toEndOf="@+id/image_restaurant"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,13 +65,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:fontFamily="sans-serif-light"
-        android:text="Olomouc"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/image_restaurant"
         app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/rating_restaurant"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,4 +105,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

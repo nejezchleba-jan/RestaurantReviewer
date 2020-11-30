@@ -2,76 +2,95 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_margin="10dp"
-    android:background="@drawable/rounded_item">
-
-    <ImageView
-        android:id="@+id/image_restaurant"
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/control_gray"
-        tools:srcCompat="@drawable/ic_image" />
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/name_restaurant"
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
+        android:id="@+id/header_food"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:text="Food name"
-        app:layout_constraintStart_toEndOf="@+id/image_restaurant"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/location_restaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="sans-serif-light"
-        android:text="Restaurace"
+        android:gravity="start"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/image_restaurant"
-        app:layout_constraintTop_toBottomOf="@+id/name_restaurant" />
-
-    <TextView
-        android:id="@+id/rating_number"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rounded_rating"
-        android:layout_marginEnd="20dp"
-        android:text="50"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_layout"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button_layout"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_item"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/button_edit_food"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/image_food"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_button"
-            android:drawableStart="@drawable/ic_more"
-            android:src="@drawable/ic_edit"
-            android:layout_height="match_parent">
-        </androidx.appcompat.widget.AppCompatImageButton>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/image_food"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/location_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/image_food"
+            app:layout_constraintTop_toBottomOf="@+id/name_food" />
+
+        <TextView
+            android:id="@+id/rating_food"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_rating_high"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/button_layout"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/button_edit_food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button"
+                android:drawableStart="@drawable/ic_more"
+                android:src="@drawable/ic_edit"></androidx.appcompat.widget.AppCompatImageButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import java.time.Instant
+import java.time.LocalDate
 import java.util.*
 
 @Entity(tableName = "Restaurants")
@@ -20,11 +21,11 @@ class Restaurant() {
         @ColumnInfo(name = "Location") var location: String? = null
         @ColumnInfo(name = "Note") var note: String? = null
         @ColumnInfo(name = "RatingFood") var ratingFood: Double? = null
-        @ColumnInfo(name = "RatingLocation") var ratingLocation: Double? = null
-        @ColumnInfo(name = "RatingPersonnel") var ratingPersonnel: Double? = null
-        @ColumnInfo(name = "RatingAtmosphere") var ratingAtmosphere: Double? = null
-        @ColumnInfo(name = "RatingFinal") var ratingFinal: Double? = null
-        @ColumnInfo(name = "Created") var created: Instant = Instant.now()
+        @ColumnInfo(name = "RatingLocation") var ratingLocation: Float? = null
+        @ColumnInfo(name = "RatingPersonnel") var ratingPersonnel: Float? = null
+        @ColumnInfo(name = "RatingAtmosphere") var ratingAtmosphere: Float? = null
+        @ColumnInfo(name = "RatingFinal") var ratingFinal: Float = 0.0F
+        @ColumnInfo(name = "Created") var created: LocalDate = LocalDate.now()
 
         override fun equals(other: Any?): Boolean {
                 if (other == null)

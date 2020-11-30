@@ -336,7 +336,7 @@
                     android:id="@+id/rate_food"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/rounded_rating"
+                    android:background="@drawable/rounded_rating_high"
                     android:backgroundTint="@color/high_rating"
                     android:gravity="center"
                     android:text="80"
