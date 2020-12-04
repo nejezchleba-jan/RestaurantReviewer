@@ -20,6 +20,19 @@ class EnumConverters(private val context: Context) {
         }
     }
 
+    fun ConvertRestaurantTypeString(str: String): RestaurantTypeEnum {
+        return when(str) {
+            context.getString(R.string.unknown) -> RestaurantTypeEnum.UNKNOWN
+            context.getString(R.string.restaurant) -> RestaurantTypeEnum.RESTAURANT
+            context.getString(R.string.cafe) -> RestaurantTypeEnum.CAFE
+            context.getString(R.string.fast_food) -> RestaurantTypeEnum.FAST_FOOD
+            context.getString(R.string.pub) -> RestaurantTypeEnum.PUB
+            context.getString(R.string.sweet_shop) -> RestaurantTypeEnum.SWEET_SHOP
+            context.getString(R.string.bistro) -> RestaurantTypeEnum.BISTRO
+            else -> RestaurantTypeEnum.UNKNOWN
+        }
+    }
+
     fun ConvertFoodGroupingEnum(enumType: FoodGroupingEnum): String {
         return when(enumType) {
             FoodGroupingEnum.DATE -> context.getString(R.string.date)

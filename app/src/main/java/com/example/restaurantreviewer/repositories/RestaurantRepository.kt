@@ -1,7 +1,6 @@
 package com.example.restaurantreviewer.repositories
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import com.example.restaurantreviewer.dao.RestaurantItemDao
 import com.example.restaurantreviewer.database.DatabaseClient
 import com.example.restaurantreviewer.database.RestaurantDB
@@ -9,19 +8,24 @@ import com.example.restaurantreviewer.model.Restaurant
 import kotlinx.coroutines.*
 
 
-class RestaurantRepository(private val app: Application) {
+class RestaurantRepository(
+    private val app: Application
+    ) {
     private val db: RestaurantDB = DatabaseClient.getInstance(app.applicationContext)?.getAppDatabase()!!
     private val mRestaurantDao: RestaurantItemDao
-    private val mRestaurantList: LiveData<List<Restaurant>>
+    lateinit var mRestaurantList: List<Restaurant>
 
     init {
         mRestaurantDao = db.restaurantItem
-        mRestaurantList = mRestaurantDao.getAllItems()
+        getAllRestaurants()
     }
 
-    fun getAllRestaurants():  LiveData<List<Restaurant>> {
-        return mRestaurantList
+    fun getAllRestaurants() {
+        GlobalScope.launch(Dispatchers.Main) {
+            mRestaurantList = mRestaurantDao.getAllItems()
+        }
     }
+
 
     fun getItem(id: Int): Restaurant? {
         var restaurant: Restaurant? = null

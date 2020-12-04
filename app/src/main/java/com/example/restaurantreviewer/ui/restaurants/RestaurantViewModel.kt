@@ -12,13 +12,13 @@ import com.example.restaurantreviewer.repositories.RestaurantRepository
 class RestaurantViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mRepository: RestaurantRepository = RestaurantRepository(application)
-    private val mListRestaurant: LiveData<List<Restaurant>>
+    private val mListRestaurant: List<Restaurant>
 
     init {
-        mListRestaurant = mRepository.getAllRestaurants()
+        mListRestaurant = mRepository.mRestaurantList
     }
 
-    fun getAllRestaurants(): LiveData<List<Restaurant>> {
+    fun getAllRestaurants(): List<Restaurant> {
         return mListRestaurant
     }
 

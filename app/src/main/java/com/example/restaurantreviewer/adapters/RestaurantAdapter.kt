@@ -11,6 +11,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.LiveData
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
@@ -18,7 +21,10 @@ import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
 
 
-class RestaurantAdapter(private val fragmentManager: FragmentManager?, private val list: List<Restaurant>, private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
+class RestaurantAdapter(
+    private val fragmentManager: FragmentManager?,
+    private val list: List<Restaurant>,
+    private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
@@ -81,17 +87,18 @@ class RestaurantAdapter(private val fragmentManager: FragmentManager?, private v
         val previousItem: Restaurant? = if (position == 0) null else list[position - 1]
         holder.bind(restaurant, previousItem)
         holder.itemView.setOnClickListener {
-            val detailFragment: Fragment = RestaurantDetailFragment()
+            val bundle = Bundle()
+            bundle.putInt("restaurantId", list[position].id)
+            it.findNavController().navigate(R.id.restaurantDetailFragment, bundle)
+            /*val detailFragment: Fragment = RestaurantDetailFragment()
             val bundle = Bundle()
             val transaction: FragmentTransaction = fragmentManager?.beginTransaction()!!
             bundle.putInt("restaurantId", list[position].id)
             detailFragment.arguments = bundle;
             transaction.replace(R.id.nav_host_fragment, detailFragment) // give your fragment container id in first parameter
             transaction.addToBackStack(null) // if written, this transaction will be added to backstack
-            transaction.commit()
+            transaction.commit()*/
         }
-
-        //TODO onClickListener
     }
 
     override fun getItemCount(): Int = list.size

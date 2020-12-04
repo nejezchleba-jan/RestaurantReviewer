@@ -15,14 +15,14 @@ class Converters {
         //DATE CONVERTER
         @TypeConverter
         @JvmStatic
-        fun toDate(stringDate: String): LocalDate {
+        fun datefromString(stringDate: String): LocalDate {
             return LocalDate.parse(stringDate, DateTimeFormatter.ISO_DATE)
         }
 
         @TypeConverter
         @JvmStatic
-        fun toString(date: LocalDate): String {
-            return SimpleDateFormat("dd/MM/yyyy").format(date)
+        fun dateToString(date: LocalDate): String {
+            return date.toString()
         }
 
         //DATE CONVERTER
