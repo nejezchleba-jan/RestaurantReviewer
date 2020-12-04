@@ -9,32 +9,27 @@ import com.example.restaurantreviewer.model.Restaurant
 import kotlinx.coroutines.*
 
 
-class RestaurantRepository(private val app: Application) {
+class RestaurantRepository(app: Application) {
     private val db: RestaurantDB = DatabaseClient.getInstance(app.applicationContext)?.getAppDatabase()!!
     private val mRestaurantDao: RestaurantItemDao
-    val mRestaurantList: LiveData<List<Restaurant>>
+    private val mLiveData: LiveData<List<Restaurant>>
 
     init {
         mRestaurantDao = db.restaurantItem
-        mRestaurantList = getAllRestaurants()
+        mLiveData = mRestaurantDao.getAllItems()
     }
 
-    private suspend fun getAllRestaurants(): LiveData<List<Restaurant>> {
-        return withContext(Dispatchers.Main) {
-            mRestaurantDao.getAllItems()
-        }
+    fun getAllRestaurants(): LiveData<List<Restaurant>> {
+        return mLiveData
     }
 
-    private
-
-    fun getItem(id: Int): Restaurant? {
-        var restaurant: Restaurant? = null
-        runBlocking {
-            GlobalScope.async {
-                restaurant = mRestaurantDao.getItemById(id)
-            }
+    fun getItem(id: Int): LiveData<Restaurant> {
+        return mRestaurantDao.getItemById(id)
+        /*var restaurant: Restaurant? = null
+        GlobalScope.launch {
+            restaurant = mRestaurantDao.getItemById(id)
         }
-        return restaurant;
+        return restaurant*/
     }
 
     fun insert(restaurant: Restaurant?) {

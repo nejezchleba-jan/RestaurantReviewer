@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -16,16 +13,14 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.adapters.RestaurantAdapter
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
-import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
 import com.example.restaurantreviewer.ui.restaurants.RestaurantViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.internal.ContextUtils
 import kotlinx.android.synthetic.main.fragment_restaurants.*
-import java.time.Instant
 
 class HomeFragment : Fragment() {
 
     private lateinit var restaurantViewModel: RestaurantViewModel
+    private lateinit var restaurantAdapter: RestaurantAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +50,9 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
         restaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
+        restaurantAdapter = RestaurantAdapter(listOf())
         restaurantViewModel.mListRestaurant.observe(viewLifecycleOwner, Observer {
             recycler_restaurant.adapter = RestaurantAdapter(it)
-            recycler_restaurant.layoutManager = LinearLayoutManager(activity)
         })
         return inflater.inflate(R.layout.fragment_restaurants, container, false)
     }
@@ -71,14 +66,13 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.restaurantAddFragment)
         }
         // RecyclerView node initialized here
-       /* recycler_restaurant.apply {
+        recycler_restaurant.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            //adapter = RestaurantAdapter(restaurantViewModel.mListRestaurant)
-
-        }*/
+            adapter = restaurantAdapter
+        }
     }
 
     companion object {

@@ -8,15 +8,17 @@ import android.widget.RatingBar
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantreviewer.R
+import com.example.restaurantreviewer.adapters.RestaurantAdapter
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 class RestaurantDetailFragment : Fragment() {
     private lateinit var restaurantViewModel: RestaurantViewModel
-    private lateinit var selectedRestaurant: Restaurant
-    private val bundle = this.arguments
     private var mName: TextView? = null
     private var mLocation: TextView? = null
     private var mType: TextView? = null
@@ -26,6 +28,7 @@ class RestaurantDetailFragment : Fragment() {
     private var mPersonellRating: RatingBar? = null
     private var mLocationRating: RatingBar? = null
     private var mAtmosphereRating: RatingBar? = null
+    private var selectedRestaurant: Restaurant? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -41,6 +44,7 @@ class RestaurantDetailFragment : Fragment() {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO Databiding?
         mName = view.findViewById(R.id.name_restaurant)
         mLocation = view.findViewById(R.id.text_location)
         mType = view.findViewById(R.id.text_type)
@@ -52,17 +56,20 @@ class RestaurantDetailFragment : Fragment() {
         mAtmosphereRating = view.findViewById(R.id.rate_atmosphere)
         val converter = EnumConverters(requireContext());
 
-        if (bundle != null) {
-            selectedRestaurant = restaurantViewModel.getItem(bundle.getInt("restaurantId"))!!
-            mName?.text = selectedRestaurant.name
-            mLocation?.text = selectedRestaurant.location
-            mType?.text = converter.ConvertRestaurantTypeEnum(selectedRestaurant.type);
-            mNote?.text = selectedRestaurant.name
-            setRating(mFinalRating, selectedRestaurant.ratingFinal)
-            setRating(mFoodRating, selectedRestaurant.ratingFood)
-            setRating(mPersonellRating, selectedRestaurant.ratingPersonnel)
-            setRating(mLocationRating, selectedRestaurant.ratingLocation)
-            setRating(mAtmosphereRating, selectedRestaurant.ratingAtmosphere)
+        arguments?.let {
+            val tmp = restaurantViewModel.getItem(it.getInt("restaurantId"))
+            tmp.observe(viewLifecycleOwner, Observer { item ->
+                selectedRestaurant = item
+                mName?.text = item.name
+                mLocation?.text = item.location
+                mType?.text = converter.ConvertRestaurantTypeEnum(item.type);
+                mNote?.text = item.name
+                setRating(mFinalRating, item.ratingFinal)
+                setRating(mFoodRating, item.ratingFood)
+                setRating(mPersonellRating, item.ratingPersonnel)
+                setRating(mLocationRating, item.ratingLocation)
+                setRating(mAtmosphereRating, item.ratingAtmosphere)
+            })
         }
     }
 

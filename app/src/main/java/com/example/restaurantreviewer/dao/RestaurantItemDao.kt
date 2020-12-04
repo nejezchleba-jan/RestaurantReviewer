@@ -6,10 +6,10 @@ import com.example.restaurantreviewer.model.Restaurant
 
 @Dao
 interface RestaurantItemDao  {
-    @Query("SELECT * FROM Restaurants ORDER BY Created Desc")
+    @Query("SELECT * FROM Restaurants ORDER BY Created Desc, Name Desc ")
     fun getAllItems(): LiveData<List<Restaurant>>
-    @Query("SELECT * FROM Restaurants WHERE Id == (:itemId)")
-    fun getItemById(itemId: Int): Restaurant
+    @Query("SELECT * FROM Restaurants WHERE Id = (:itemId)")
+    fun getItemById(itemId: Int): LiveData<Restaurant>
     @Insert()
     fun insertItem(item: Restaurant)
     @Update()

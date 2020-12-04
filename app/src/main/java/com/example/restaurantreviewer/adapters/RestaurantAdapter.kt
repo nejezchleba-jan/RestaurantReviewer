@@ -22,9 +22,11 @@ import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
 
 
 class RestaurantAdapter(
-    private val list: List<Restaurant>,
-    private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
+        list: List<Restaurant>,
+        private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+
+    private var restaurantList: List<Restaurant> = list
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_restaurant_item, parent, false)) {
@@ -82,12 +84,12 @@ class RestaurantAdapter(
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        val restaurant: Restaurant = list[position]
-        val previousItem: Restaurant? = if (position == 0) null else list[position - 1]
+        val restaurant: Restaurant = restaurantList[position]
+        val previousItem: Restaurant? = if (position == 0) null else restaurantList[position - 1]
         holder.bind(restaurant, previousItem)
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("restaurantId", list[position].id)
+            bundle.putInt("restaurantId", restaurantList[position].id)
             it.findNavController().navigate(R.id.restaurantDetailFragment, bundle)
             /*val detailFragment: Fragment = RestaurantDetailFragment()
             val bundle = Bundle()
@@ -100,5 +102,10 @@ class RestaurantAdapter(
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = restaurantList.size
+
+    fun setData(newList: List<Restaurant>) {
+        restaurantList = newList
+        this.notifyDataSetChanged()
+    }
 }
