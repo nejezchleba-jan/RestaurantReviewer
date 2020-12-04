@@ -6,10 +6,12 @@
         <item>€</item>
     </string-array>
     <string-array name="restaurant_type">
-        <item>Cafe</item>
-        <item>Fast food restaurant</item>
-        <item>Pub</item>
-        <item>Restaurant</item>
-        <item>Sweet-shop</item>
+        <item>@string/unknown</item>
+        <item>@string/cafe</item>
+        <item>@string/fast_food</item>
+        <item>@string/pub</item>
+        <item>@string/restaurant</item>
+        <item>@string/sweet_shop</item>
+        <item>@string/bistro</item>
     </string-array>
 </resources>

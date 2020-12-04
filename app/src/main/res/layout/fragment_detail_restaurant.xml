@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dark_gray"
     android:fillViewport="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.restaurants.RestaurantDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,8 +31,8 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/rounded_delete"
                 android:contentDescription="@string/detail_food"
-                android:scaleX="1.8"
-                android:scaleY="1.8"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:src="@drawable/ic_food"
                 android:tint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/rounded_delete"
-                android:scaleX="2"
-                android:scaleY="2"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:src="@drawable/ic_edit"
                 android:tint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -207,13 +209,28 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_note">
     </TextView>
 
+        <RatingBar
+            android:id="@+id/rate_final"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/dark_gray"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/yellow"
+            app:layout_constraintBottom_toTopOf="@+id/layout_food_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_ratings" />
+
     <LinearLayout
         android:id="@+id/layout_food_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_ratings"
+        app:layout_constraintTop_toBottomOf="@+id/rate_final"
         android:layout_margin="20dp"
         android:gravity="center"
         android:weightSum="4"
@@ -252,6 +269,7 @@
             android:layout_margin="5dp"
             android:background="@color/dark_gray"
             android:numStars="5"
+            android:isIndicator="true"
             android:progressTint="@color/yellow" />
     </LinearLayout>
 
@@ -300,6 +318,7 @@
             android:layout_margin="5dp"
             android:background="@color/dark_gray"
             android:numStars="5"
+            android:isIndicator="true"
             android:progressTint="@color/yellow"/>
     </LinearLayout>
 
@@ -348,6 +367,7 @@
         android:layout_margin="5dp"
         android:background="@color/dark_gray"
         android:numStars="5"
+        android:isIndicator="true"
         android:progressTint="@color/yellow"/>
     </LinearLayout>
 
@@ -396,6 +416,7 @@
             android:layout_margin="5dp"
             android:background="@color/dark_gray"
             android:numStars="5"
+            android:isIndicator="true"
             android:progressTint="@color/yellow"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

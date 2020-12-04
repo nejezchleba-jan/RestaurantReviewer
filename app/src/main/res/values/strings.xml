@@ -35,4 +35,12 @@
     <string name="about">About</string>
     <string name="list_options">List options</string>
     <string name="detail_food">Detail food</string>
+    <string name="unknown">Unknown</string>
+    <string name="cafe">Cafe</string>
+    <string name="fast_food">Fast food restaurant</string>
+    <string name="pub">Pub</string>
+    <string name="sweet_shop">Sweet-shop</string>
+    <string name="bistro">Bistro</string>
+    <string name="date">Date</string>
+    <string name="restaurant_detail">Restaurant detail</string>
 </resources>

@@ -1,12 +1,13 @@
 package com.example.restaurantreviewer.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.restaurantreviewer.model.Restaurant
 
 @Dao
 interface RestaurantItemDao  {
     @Query("SELECT * FROM Restaurants ORDER BY Created Desc")
-    fun getAllItems(): MutableList<Restaurant>
+    fun getAllItems(): LiveData<List<Restaurant>>
     @Query("SELECT * FROM Restaurants WHERE id == (:itemId)")
     fun getItemById(itemId: Int): Restaurant
     @Insert()

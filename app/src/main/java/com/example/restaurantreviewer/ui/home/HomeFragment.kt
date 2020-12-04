@@ -13,6 +13,8 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.adapters.RestaurantAdapter
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
+import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
+import com.google.android.material.internal.ContextUtils
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import java.time.Instant
 
@@ -74,8 +76,9 @@ class HomeFragment : Fragment() {
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = RestaurantAdapter(testRestaurants())
+            adapter = RestaurantAdapter(activity?.supportFragmentManager,testRestaurants())
         }
+
     }
 
     companion object {

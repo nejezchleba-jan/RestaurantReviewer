@@ -7,5 +7,5 @@ enum class RestaurantTypeEnum(val code: Int) {
     FAST_FOOD(2),
     PUB(3),
     SWEET_SHOP(4),
-    BISTRO(5)
+    BISTRO(5);
 }

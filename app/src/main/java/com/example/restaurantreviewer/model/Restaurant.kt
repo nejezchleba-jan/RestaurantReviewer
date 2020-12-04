@@ -20,10 +20,10 @@ class Restaurant() {
         @ColumnInfo(name = "Image") var image: String? = null
         @ColumnInfo(name = "Location") var location: String? = null
         @ColumnInfo(name = "Note") var note: String? = null
-        @ColumnInfo(name = "RatingFood") var ratingFood: Double? = null
-        @ColumnInfo(name = "RatingLocation") var ratingLocation: Float? = null
-        @ColumnInfo(name = "RatingPersonnel") var ratingPersonnel: Float? = null
-        @ColumnInfo(name = "RatingAtmosphere") var ratingAtmosphere: Float? = null
+        @ColumnInfo(name = "RatingFood") var ratingFood: Float = -1.0F
+        @ColumnInfo(name = "RatingLocation") var ratingLocation: Float = -1.0F
+        @ColumnInfo(name = "RatingPersonnel") var ratingPersonnel: Float = -1.0F
+        @ColumnInfo(name = "RatingAtmosphere") var ratingAtmosphere: Float = -1.0F
         @ColumnInfo(name = "RatingFinal") var ratingFinal: Float = 0.0F
         @ColumnInfo(name = "Created") var created: LocalDate = LocalDate.now()
 
