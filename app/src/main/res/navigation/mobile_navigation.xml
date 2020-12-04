@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_restaurant">
+    app:startDestination="@id/navigation_restaurant">
 
     <fragment
         android:id="@+id/navigation_restaurant"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/restaurantAddFragment"
         android:name="com.example.restaurantreviewer.ui.restaurants.RestaurantAddFragment"
-        android:label="fragment_add_restaurant"
+        android:label="@string/restaurant_add"
         tools:layout="@layout/fragment_add_restaurant" />
 
 </navigation>

@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/food_item">>
+    android:id="@+id/food_item">
 
     <TextView
         android:id="@+id/header_food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-light"
         android:gravity="start"
         android:textColor="@color/white"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -45,7 +45,7 @@
             android:id="@+id/name_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/image_food"
@@ -55,7 +55,7 @@
             android:id="@+id/location_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/image_food"
@@ -89,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_button"
                 android:drawableStart="@drawable/ic_more"
-                android:src="@drawable/ic_edit"></androidx.appcompat.widget.AppCompatImageButton>
+                android:src="@drawable/ic_edit" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

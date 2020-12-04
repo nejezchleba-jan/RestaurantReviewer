@@ -1,20 +1,19 @@
 package com.example.restaurantreviewer.ui.restaurants
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.view.*
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RatingBar
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.restaurantreviewer.R
-import com.example.restaurantreviewer.converters.Converters
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
-import kotlinx.android.synthetic.main.fragment_add_restaurant.*
+
 
 class RestaurantAddFragment : Fragment() {
     private lateinit var restaurantViewModel: RestaurantViewModel
@@ -27,7 +26,29 @@ class RestaurantAddFragment : Fragment() {
     private var mLocationRating: RatingBar? = null
     private var mAtmosphereRating: RatingBar? = null
     private var mButtonConfirm: ImageButton? = null
+    private var mainView: View? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.confirm_add_menu, menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when (id) {
+            R.id.action_confirm ->
+                insertAction(mainView)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -43,9 +64,11 @@ class RestaurantAddFragment : Fragment() {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainView = view;
         val converter = EnumConverters(requireContext());
         fillSpinner(view.findViewById(R.id.spinner_type), converter)
-        mButtonConfirm = view.findViewById(R.id.button_confirm_restaurant)
+        mainView = view;
+        /*mButtonConfirm = view.findViewById(R.id.button_confirm_restaurant)
         mName = view.findViewById(R.id.text_name)
         mLocation = view.findViewById(R.id.text_location)
         mType = view.findViewById(R.id.spinner_type)
@@ -71,7 +94,7 @@ class RestaurantAddFragment : Fragment() {
 
             restaurantViewModel.insert(newRest)
             view.findNavController().navigate(R.id.navigation_restaurant)
-        }
+        }*/
     }
 
     private fun fillSpinner(view: Spinner?, converter: EnumConverters) {
@@ -79,6 +102,37 @@ class RestaurantAddFragment : Fragment() {
         val items: MutableList<String> = mutableListOf()
         values.forEach {
             items.add(converter.ConvertRestaurantTypeEnum(it))
+        }
+    }
+
+    private fun insertAction(view: View?) {
+        val converter = EnumConverters(requireContext());
+        view?.let {
+            mButtonConfirm = it.findViewById(R.id.button_confirm_restaurant)
+            mName = it.findViewById(R.id.text_name)
+            mLocation = it.findViewById(R.id.text_location)
+            mType = it.findViewById(R.id.spinner_type)
+            mNote = it.findViewById(R.id.text_note)
+            mFoodRating = it.findViewById(R.id.rate_food)
+            mPersonellRating = it.findViewById(R.id.rate_personal)
+            mLocationRating = it.findViewById(R.id.rate_location)
+            mAtmosphereRating = it.findViewById(R.id.rate_atmosphere)
+
+            val newRest: Restaurant = Restaurant()
+            newRest.name = mName?.editableText.toString()
+            newRest.location = mLocation?.editableText.toString()
+            newRest.type = converter.ConvertRestaurantTypeString(mType?.selectedItem.toString())
+            newRest.note = mNote?.editableText.toString()
+            newRest.ratingFood = mFoodRating?.rating!!
+            newRest.ratingLocation = mLocationRating?.rating!!
+            newRest.ratingPersonnel = mPersonellRating?.rating!!
+            newRest.ratingAtmosphere = mAtmosphereRating?.rating!!
+            newRest.ratingFinal =
+                    ((newRest.ratingFood + newRest.ratingLocation
+                            + newRest.ratingPersonnel + newRest.ratingAtmosphere) / 4)
+
+            restaurantViewModel.insert(newRest)
+            it.findNavController().navigate(R.id.navigation_restaurant)
         }
     }
 

@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/button_confirm_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/add_restaurant">
 
-            </ImageButton>
+            </ImageButton>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

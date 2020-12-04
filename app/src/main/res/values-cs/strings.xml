@@ -44,4 +44,6 @@
     <string name="sweet_shop">Sweet-shop</string>
     <string name="date">Date</string>
     <string name="restaurant_detail">Restaurant detail</string>
+    <string name="restaurant_add">Add restaurant</string>
+    <string name="confirm">Confirm</string>
 </resources>
