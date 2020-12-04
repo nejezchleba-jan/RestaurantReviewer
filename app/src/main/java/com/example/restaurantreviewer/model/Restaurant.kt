@@ -10,11 +10,9 @@ import java.time.LocalDate
 import java.util.*
 
 @Entity(tableName = "Restaurants")
-class Restaurant() {
-        @PrimaryKey(autoGenerate = true)
+class Restaurant{
         @ColumnInfo(name = "Id")
-        var id: Int = -1
-
+        @PrimaryKey(autoGenerate = true) var id: Int = 0
         @ColumnInfo(name = "Name") var name: String = "Unknown"
         @ColumnInfo(name = "Type") var type: RestaurantTypeEnum = RestaurantTypeEnum.UNKNOWN
         @ColumnInfo(name = "Image") var image: String? = null

@@ -22,7 +22,6 @@ import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
 
 
 class RestaurantAdapter(
-    private val fragmentManager: FragmentManager?,
     private val list: List<Restaurant>,
     private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {

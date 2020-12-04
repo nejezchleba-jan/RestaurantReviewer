@@ -22,7 +22,6 @@ class RestaurantAddFragment : Fragment() {
     private var mLocation: EditText? = null
     private var mType: Spinner? = null
     private var mNote: EditText? = null
-    private var mFinalRating: RatingBar? = null
     private var mFoodRating: RatingBar? = null
     private var mPersonellRating: RatingBar? = null
     private var mLocationRating: RatingBar? = null
@@ -57,7 +56,7 @@ class RestaurantAddFragment : Fragment() {
         mAtmosphereRating = view.findViewById(R.id.rate_atmosphere)
 
         mButtonConfirm?.setOnClickListener {
-            var newRest: Restaurant = Restaurant()
+            val newRest: Restaurant = Restaurant()
             newRest.name = mName?.editableText.toString()
             newRest.location = mLocation?.editableText.toString()
             newRest.type = converter.ConvertRestaurantTypeString(mType?.selectedItem.toString())

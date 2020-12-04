@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -53,6 +55,10 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
         restaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
+        restaurantViewModel.mListRestaurant.observe(viewLifecycleOwner, Observer {
+            recycler_restaurant.adapter = RestaurantAdapter(it)
+            recycler_restaurant.layoutManager = LinearLayoutManager(activity)
+        })
         return inflater.inflate(R.layout.fragment_restaurants, container, false)
     }
 
@@ -65,13 +71,14 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.restaurantAddFragment)
         }
         // RecyclerView node initialized here
-        recycler_restaurant.apply {
+       /* recycler_restaurant.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = RestaurantAdapter(activity?.supportFragmentManager, restaurantViewModel.getAllRestaurants())
-        }
+            //adapter = RestaurantAdapter(restaurantViewModel.mListRestaurant)
+
+        }*/
     }
 
     companion object {
