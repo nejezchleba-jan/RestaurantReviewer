@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/label_info"
+            app:layout_constraintBottom_toTopOf="@id/image_restaurant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,8 +27,7 @@
                 android:id="@+id/button_delete_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="20dp"
                 android:background="@drawable/rounded_delete"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
@@ -53,24 +52,24 @@
                 android:contentDescription="@string/confirm_edit">
 
             </ImageButton>-->
+            <TextView
+                android:id="@+id/label_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="@string/info"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </TextView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <TextView
-        android:id="@+id/label_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="@string/info"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/image_restaurant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_actions">
-    </TextView>
 
         <ImageView
         android:id="@+id/image_restaurant"
@@ -82,7 +81,7 @@
         android:src="@drawable/ic_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label_info"
+        app:layout_constraintTop_toBottomOf="@id/layout_actions"
         app:layout_constraintBottom_toTopOf="@id/name" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

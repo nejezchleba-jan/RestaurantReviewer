@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@color/dark_gray"
     android:fillViewport="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.food.FoodEditFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,26 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/label_info"
+            app:layout_constraintBottom_toTopOf="@+id/restaurant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:id="@+id/button_delete_restaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded_delete"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:src="@drawable/ic_delete"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/delete_food" />
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/button_confirm_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,25 +38,41 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/confirm_edit">
 
-            </ImageButton>
+            </ImageButton>-->
+
+            <ImageButton
+                android:id="@+id/button_delete_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded_delete"
+                android:contentDescription="@string/delete_food"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/label_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="@string/info"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:id="@+id/label_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:text="@string/info"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/white"
-            android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/restaurant"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_actions">
-        </TextView>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/restaurant"
@@ -78,7 +82,7 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_info">
+            app:layout_constraintTop_toBottomOf="@+id/layout_actions">
 
 
             <TextView
@@ -95,11 +99,10 @@
                 app:drawableTint="@color/white" />
 
             <Spinner
-                android:id="@+id/spinner_type"
+                android:id="@+id/spinner_food_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:entries="@array/restaurant_type"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +194,7 @@
 
             <LinearLayout
                 android:id="@+id/layout_value_price"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -212,19 +215,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_value_price"
                 android:importantForAutofill="no" />
 
-            <Spinner
-                android:id="@+id/spinner_currency"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:entries="@array/currency"
-                android:backgroundTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_price"
-                app:layout_constraintTop_toBottomOf="@+id/layout_value_price"
-                android:theme="@style/MySpinnerStyle">
+                <Spinner
+                    android:id="@+id/spinner_currency"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:entries="@array/currency"
+                    android:gravity="center"
+                    android:theme="@style/MySpinnerStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_price"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_value_price">
 
-            </Spinner>
+                </Spinner>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -350,7 +353,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/rounded_rating_high"
-                    android:backgroundTint="@color/high_rating"
+                    android:backgroundTint="@color/orange"
                     android:gravity="center"
                     android:text="80"
                     android:textColor="@color/white"

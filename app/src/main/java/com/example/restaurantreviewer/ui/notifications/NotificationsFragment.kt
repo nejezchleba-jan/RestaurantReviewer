@@ -9,10 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.restaurantreviewer.R
+import com.example.restaurantreviewer.ui.restaurants.RestaurantViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -22,10 +28,22 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel =
                 ViewModelProvider(this).get(NotificationsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_about, container, false)
-       /* val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mFoodCount: TextView = view.findViewById(R.id.num_food_reviewed)
+        val mRestaurantCount: TextView = view.findViewById(R.id.num_restaurants_reviewed)
+        notificationsViewModel = ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        GlobalScope.launch {
+            notificationsViewModel.getFoodCount()
+            notificationsViewModel.getRestaurantCount()
+
+            activity?.runOnUiThread{
+                mFoodCount.text = notificationsViewModel.mListFoodCount.toString()
+                mRestaurantCount.text = notificationsViewModel.mListFoodCount.toString()
+            }
+        }
     }
 }

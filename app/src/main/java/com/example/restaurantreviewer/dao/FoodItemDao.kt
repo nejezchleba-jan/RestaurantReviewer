@@ -8,15 +8,18 @@ import com.example.restaurantreviewer.model.Restaurant
 @Dao
 interface FoodItemDao  {
     @Query("SELECT * FROM Food ORDER BY Created Desc")
-    fun getAllItems(): MutableList<Food>
+    fun getAllItems(): LiveData<MutableList<Food>>
     @Query("SELECT * FROM Food WHERE id == (:itemId)")
-    fun getItemById(itemId: Int): Food
+    fun getItemById(itemId: Int): LiveData<Food>
     @Query("SELECT * FROM Food WHERE RestaurantId = (:restaurantId)")
-    fun getItemsByRestaurant(restaurantId: Int): LiveData<Food>
+    fun getItemsByRestaurant(restaurantId: Int): LiveData<MutableList<Food>>
     @Insert()
     fun insertItem(item: Food)
     @Update()
     fun updateItem(item: Food)
     @Delete()
     fun deleteItem(item: Food)
+
+    @Query("SELECT count(*) FROM Food")
+    fun getFoodCount(): Int
 }

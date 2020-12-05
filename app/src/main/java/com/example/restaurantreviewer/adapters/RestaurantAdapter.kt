@@ -147,8 +147,8 @@ class RestaurantAdapter(
         view.visibility = View.VISIBLE
     }
 
-    fun searchFilter(text: String) {
-        var text = text
+    fun searchFilter(_text: String) {
+        var text = _text
         restaurantList.clear()
         if (text.isEmpty()) {
             restaurantList.addAll(copyList)

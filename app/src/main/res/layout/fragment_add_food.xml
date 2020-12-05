@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@color/dark_gray"
     android:fillViewport="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.food.FoodAddFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/button_confirm_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/add_food">
 
-            </ImageButton>
+            </ImageButton>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -81,11 +82,10 @@
                     app:drawableTint="@color/white" />
 
             <Spinner
-                android:id="@+id/spinner_type"
+                android:id="@+id/spinner_food_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:entries="@array/restaurant_type"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -200,8 +200,8 @@
 
                 <Spinner
                     android:id="@+id/spinner_currency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:backgroundTint="@color/white"
                     android:entries="@array/currency"
                     android:gravity="center"
@@ -333,13 +333,13 @@
 
 
                 <EditText
-                    android:id="@+id/rate_food"
+                        android:id="@+id/rate_food"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/rounded_rating_high"
-                    android:backgroundTint="@color/high_rating"
+                    android:backgroundTint="@color/orange"
                     android:gravity="center"
-                    android:text="80"
+                    android:text="50"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"

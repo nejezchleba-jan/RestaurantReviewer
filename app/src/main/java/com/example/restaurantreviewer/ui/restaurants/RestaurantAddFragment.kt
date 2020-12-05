@@ -1,19 +1,15 @@
 package com.example.restaurantreviewer.ui.restaurants
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.*
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
-import java.util.zip.Inflater
 
 
 class RestaurantAddFragment : Fragment() {
@@ -77,7 +73,7 @@ class RestaurantAddFragment : Fragment() {
         val values = enumValues<RestaurantTypeEnum>()
         val items: MutableList<String> = mutableListOf()
         values.forEach {
-            items.add(converter.ConvertRestaurantTypeEnum(it))
+            items.add(converter.convertRestaurantTypeEnum(it))
         }
         val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, items)
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_restaurant_type);
@@ -99,7 +95,7 @@ class RestaurantAddFragment : Fragment() {
             val newRest: Restaurant = Restaurant()
             newRest.name = mName?.editableText.toString()
             newRest.location = mLocation?.editableText.toString()
-            newRest.type = converter.ConvertRestaurantTypeString(mType?.selectedItem.toString())
+            newRest.type = converter.convertRestaurantTypeString(mType?.selectedItem.toString())
             newRest.note = mNote?.editableText.toString()
             newRest.ratingFood = mFoodRating?.rating!!
             newRest.ratingLocation = mLocationRating?.rating!!

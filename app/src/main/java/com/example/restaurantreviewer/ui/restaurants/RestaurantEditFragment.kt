@@ -2,8 +2,6 @@ package com.example.restaurantreviewer.ui.restaurants
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -15,7 +13,6 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
-import com.google.android.material.snackbar.Snackbar
 
 
 class RestaurantEditFragment : Fragment() {
@@ -117,7 +114,7 @@ class RestaurantEditFragment : Fragment() {
             newRest.created = selectedRestaurant?.created!!
             newRest.name = mName?.editableText.toString()
             newRest.location = mLocation?.editableText.toString()
-            newRest.type = converter.ConvertRestaurantTypeString(mType?.selectedItem.toString())
+            newRest.type = converter.convertRestaurantTypeString(mType?.selectedItem.toString())
             newRest.note = mNote?.editableText.toString()
             newRest.ratingFood = mFoodRating?.rating!!
             newRest.ratingLocation = mLocationRating?.rating!!
@@ -145,7 +142,7 @@ class RestaurantEditFragment : Fragment() {
 
     private fun deleteDialog(view: View) {
         val alertDialog: AlertDialog? = activity?.let {
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it, R.style.AlertDialogTheme)
             builder.apply {
                 setPositiveButton(R.string.confirm,
                         DialogInterface.OnClickListener { dialog, _ ->
@@ -157,8 +154,8 @@ class RestaurantEditFragment : Fragment() {
                             dialog.cancel()
                         })
             }
-            builder.setMessage(R.string.restaurant_delete)
-                    .setTitle(R.string.restaurant_delete_title)
+            builder.setMessage("").setTitle(R.string.restaurant_delete)
+
             builder.create()
         }
         alertDialog?.show()
@@ -174,7 +171,7 @@ class RestaurantEditFragment : Fragment() {
         val items: MutableList<String> = mutableListOf()
         var curPosition: Int = 0
         values.forEach {
-            items.add(converter.ConvertRestaurantTypeEnum(it))
+            items.add(converter.convertRestaurantTypeEnum(it))
             if(it == curValue) curPosition = items.lastIndex
         }
         val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, items)

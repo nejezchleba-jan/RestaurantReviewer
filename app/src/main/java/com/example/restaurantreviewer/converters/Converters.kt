@@ -67,7 +67,7 @@ class Converters {
                 "$" -> FoodCurrencyEnum.DOLLAR
                 "€" -> FoodCurrencyEnum.EURO
                 "Kč" -> FoodCurrencyEnum.CZECH_CROWN
-                else ->  FoodCurrencyEnum.UNKNOWN
+                else  -> FoodCurrencyEnum.CZECH_CROWN
             }
         }
 

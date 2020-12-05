@@ -23,6 +23,10 @@ class RestaurantRepository(app: Application) {
         return mLiveData
     }
 
+    fun getRestaurantCount(): Int {
+        return mRestaurantDao.getRestaurantCount()
+    }
+
     fun getItem(id: Int): LiveData<Restaurant> {
         return mRestaurantDao.getItemById(id)
         /*var restaurant: Restaurant? = null

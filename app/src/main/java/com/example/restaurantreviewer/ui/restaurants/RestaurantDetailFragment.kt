@@ -5,17 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantreviewer.R
-import com.example.restaurantreviewer.adapters.RestaurantAdapter
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
-import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 class RestaurantDetailFragment : Fragment() {
     private lateinit var restaurantViewModel: RestaurantViewModel
@@ -62,8 +58,8 @@ class RestaurantDetailFragment : Fragment() {
                 selectedRestaurant = item
                 mName?.text = item.name
                 mLocation?.text = item.location
-                mType?.text = converter.ConvertRestaurantTypeEnum(item.type);
-                mNote?.text = item.name
+                mType?.text = converter.convertRestaurantTypeEnum(item.type);
+                mNote?.text = item.note
                 setRating(mFinalRating, item.ratingFinal)
                 setRating(mFoodRating, item.ratingFood)
                 setRating(mPersonellRating, item.ratingPersonnel)

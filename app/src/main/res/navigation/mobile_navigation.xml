@@ -24,13 +24,29 @@
             android:id="@+id/action_navigation_restaurant_to_restaurantEditFragment"
             app:destination="@id/restaurantEditFragment"
             app:popUpTo="@id/navigation_restaurant" />
+        <action
+            android:id="@+id/action_navigation_restaurant_to_navigation_food"
+            app:destination="@id/navigation_food" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_food"
         android:name="com.example.restaurantreviewer.ui.dashboard.DashboardFragment"
         android:label="@string/title_food"
-        tools:layout="@layout/fragment_food" />
+        tools:layout="@layout/fragment_food" >
+        <action
+            android:id="@+id/action_navigation_food_to_foodAddFragment"
+            app:destination="@id/foodAddFragment"
+            app:popUpTo="@id/navigation_food" />
+        <action
+            android:id="@+id/action_navigation_food_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment"
+            app:popUpTo="@id/navigation_food" />
+        <action
+            android:id="@+id/action_navigation_food_to_foodEditFragment"
+            app:destination="@id/foodEditFragment"
+            app:popUpTo="@id/navigation_food" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_about"
@@ -53,5 +69,20 @@
         android:name="com.example.restaurantreviewer.ui.restaurants.RestaurantEditFragment"
         android:label="@string/restaurant_edit"
         tools:layout="@layout/fragment_edit_restaurant" />
+    <fragment
+        android:id="@+id/foodAddFragment"
+        android:name="com.example.restaurantreviewer.ui.food.FoodAddFragment"
+        android:label="@string/food_add"
+        tools:layout="@layout/fragment_add_food" />
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.example.restaurantreviewer.ui.food.FoodDetailFragment"
+        android:label="@string/food_detail"
+        tools:layout="@layout/fragment_detail_food" />
+    <fragment
+        android:id="@+id/foodEditFragment"
+        android:name="com.example.restaurantreviewer.ui.food.FoodEditFragment"
+        android:label="@string/food_edit"
+        tools:layout="@layout/fragment_edit_food" />
 
 </navigation>

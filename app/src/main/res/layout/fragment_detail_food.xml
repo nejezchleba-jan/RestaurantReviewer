@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dark_gray"
     android:fillViewport="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.food.FoodDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
+<!--            <ImageButton
                 android:id="@+id/button_edit_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +36,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/edit_food" />
+                android:contentDescription="@string/edit_food" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -42,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/food"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:gravity="center"
@@ -76,7 +78,6 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_food">
@@ -98,9 +99,8 @@
             <TextView
                 android:id="@+id/text_restaurant"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_weight="3"
                 android:text="U Terezky"
                 android:textAlignment="textEnd"
                 android:textSize="20sp" />
@@ -116,7 +116,6 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_restaurant"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:weightSum="4"
             android:orientation="vertical">
 
 
@@ -136,12 +135,11 @@
             <TextView
                 android:id="@+id/text_price"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="120 Kč"
                 android:textAlignment="textEnd"
-                android:textSize="20sp"
-                android:layout_weight="3">
+                android:textSize="20sp">
             </TextView>
         </LinearLayout>
 
@@ -154,7 +152,6 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_price"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:weightSum="4"
             android:orientation="vertical">
 
             <TextView
@@ -172,11 +169,10 @@
                 android:id="@+id/text_ordered"
                 android:layout_width="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:text="1. 1. 2020"
                 android:textAlignment="textStart"
-                android:textSize="20sp"
-                android:layout_weight="3">
+                android:textSize="20sp">
             </TextView>
         </LinearLayout>
 
@@ -189,7 +185,6 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_ordered"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:weightSum="4"
             android:orientation="vertical">
 
                 <TextView
@@ -234,7 +229,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/rounded_rating_high"
-            android:backgroundTint="@color/high_rating"
+            android:backgroundTint="@color/orange"
             android:gravity="center"
             android:text="80"
             android:textColor="@color/white"

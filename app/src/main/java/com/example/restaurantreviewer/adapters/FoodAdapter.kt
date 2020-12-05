@@ -3,23 +3,35 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.FoodGroupingEnum
+import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
 import com.example.restaurantreviewer.model.Food
 import com.example.restaurantreviewer.model.Restaurant
+import com.example.restaurantreviewer.utils.JsonConverters
 import java.util.*
 
 
-class FoodAdapter(private val list: List<Food>, private val grouping: FoodGroupingEnum = FoodGroupingEnum.DATE)
+class FoodAdapter(
+    list: MutableList<Food>,
+    restaurants: MutableList<Restaurant>,
+    private val grouping: FoodGroupingEnum = FoodGroupingEnum.DATE)
 : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+
+    val restaurantList: MutableList<Restaurant> = restaurants
+    private val foodList: MutableList<Food> = list
+    private var copyList: MutableList<Food> = list
 
     inner class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_food_item, parent, false)) {
@@ -43,6 +55,7 @@ class FoodAdapter(private val list: List<Food>, private val grouping: FoodGroupi
         fun bind(food: Food, previous: Food?) {
             setHeader(food, previous, mHeaderView)
             mNameView?.text = food.name
+            mRestaurant?.text = restaurantList.find{ it.id == food.restaurantId }?.name
             //TODO Images load/save
             setRating(food, mRating)
 
@@ -50,19 +63,22 @@ class FoodAdapter(private val list: List<Food>, private val grouping: FoodGroupi
 
         private fun setRating(food: Food, view: TextView?) {
             view?.text = food.rating.toString()
-            view?.text = food.rating.toString()
             when {
                 food.rating >= 75 -> {
                     view?.setBackgroundResource(R.drawable.rounded_rating_high)
-                    context?.getColor(R.color.high_rating)?.let { view?.setTextColor(it) }
+                    view?.setTextColor(ContextCompat.getColor(context!!, R.color.high_rating))
                 }
                 food.rating >= 50 -> {
                     view?.setBackgroundResource(R.drawable.rounded_rating_medium)
-                    context?.getColor(R.color.medium_rating)?.let { view?.setTextColor(it) }
+                    view?.setTextColor(ContextCompat.getColor(context!!, R.color.medium_rating))
+                }
+                food.rating >= 25 -> {
+                    view?.setBackgroundResource(R.drawable.rounded_rating_low)
+                    view?.setTextColor(ContextCompat.getColor(context!!, R.color.low_rating))
                 }
                 food.rating >= 0 -> {
-                    view?.setBackgroundResource(R.drawable.rounded_rating_low)
-                    context?.getColor(R.color.low_rating)?.let { view?.setTextColor(it) }
+                    view?.setBackgroundResource(R.drawable.rounded_rating_worst)
+                    view?.setTextColor(ContextCompat.getColor(context!!, R.color.black))
                 }
                 }
             }
@@ -83,17 +99,57 @@ class FoodAdapter(private val list: List<Food>, private val grouping: FoodGroupi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return FoodViewHolder(inflater, parent)
+        val holder = FoodViewHolder(inflater, parent)
+        copyList = mutableListOf()
+        copyList.addAll(foodList)
+        return holder
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        val food: Food = list[position]
-        val previousItem: Food? = if (position == 0) null else list[position - 1]
+        val food: Food = foodList[position]
+        val previousItem: Food? = if (position == 0) null else foodList[position - 1]
+        val mButtonEdit: ImageButton = holder.itemView.findViewById(R.id.button_edit_food)
         holder.bind(food, previousItem)
-        //TODO onClickListener
+        mButtonEdit.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("foodId", foodList[position].id)
+            bundle.putString("restaurants", JsonConverters().convertListRestaurantToJson(restaurantList))
+            it.findNavController().navigate(R.id.foodEditFragment, bundle)
+        }
+
+        holder.itemView.setOnClickListener { it ->
+            val bundle = Bundle()
+            val foodRestaurant: Restaurant = restaurantList.find{rest -> foodList[position].restaurantId == rest.id}!!
+            bundle.putInt("foodId", foodList[position].id)
+            bundle.putString("restaurant", JsonConverters().convertRestaurantToJson(foodRestaurant))
+            it.findNavController().navigate(R.id.foodDetailFragment, bundle)
+        }
     }
 
-    override fun getItemCount(): Int = list.size
 
+    override fun getItemCount(): Int = foodList.size
 
+    fun setData(newList: MutableList<Food>, restaurants: MutableList<Restaurant>) {
+        foodList.clear()
+        foodList.addAll(newList)
+        restaurantList.clear()
+        restaurantList.addAll(restaurants)
+        this.notifyDataSetChanged()
+    }
+
+    fun searchFilter(_text: String) {
+        var text = _text
+        foodList.clear()
+        if (text.isEmpty()) {
+            foodList.addAll(copyList)
+        } else {
+            text = text.toLowerCase()
+            for (item in copyList) {
+                if (item.name.toLowerCase().contains(text)) {
+                    foodList.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
 }

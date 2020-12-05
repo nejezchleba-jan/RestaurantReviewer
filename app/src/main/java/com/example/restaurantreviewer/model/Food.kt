@@ -17,16 +17,14 @@ import java.util.*
             onDelete = ForeignKey.SET_NULL)]
 )
 class Food() {
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Id")
-    var id: Int = -1
-
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
     @ColumnInfo(name = "Name") var name: String = "Unknown"
     @ColumnInfo(name = "RestaurantId") var restaurantId: Int? = null
     @ColumnInfo(name = "Image") var image: String? = null
     @ColumnInfo(name = "Price") var price: Double? = null
-    @ColumnInfo(name = "Currency") var currency: FoodCurrencyEnum? = FoodCurrencyEnum.UNKNOWN
-    @ColumnInfo(name = "OrderDate") var orderDate: Date? = null
+    @ColumnInfo(name = "Currency") var currency: FoodCurrencyEnum? = FoodCurrencyEnum.CZECH_CROWN
+    @ColumnInfo(name = "OrderDate") var orderDate: LocalDate? = null
     @ColumnInfo(name = "Note") var note: String? = null
     @ColumnInfo(name = "Rating") var rating: Int = 0
     @ColumnInfo(name = "Created") var created: LocalDate = LocalDate.now()
