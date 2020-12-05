@@ -12,14 +12,14 @@ import kotlinx.coroutines.*
 class RestaurantRepository(app: Application) {
     private val db: RestaurantDB = DatabaseClient.getInstance(app.applicationContext)?.getAppDatabase()!!
     private val mRestaurantDao: RestaurantItemDao
-    private val mLiveData: LiveData<List<Restaurant>>
+    private val mLiveData: LiveData<MutableList<Restaurant>>
 
     init {
         mRestaurantDao = db.restaurantItem
         mLiveData = mRestaurantDao.getAllItems()
     }
 
-    fun getAllRestaurants(): LiveData<List<Restaurant>> {
+    fun getAllRestaurants(): LiveData<MutableList<Restaurant>> {
         return mLiveData
     }
 

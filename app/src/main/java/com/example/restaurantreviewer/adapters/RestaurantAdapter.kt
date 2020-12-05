@@ -3,30 +3,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.LiveData
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
 import com.example.restaurantreviewer.model.Restaurant
-import com.example.restaurantreviewer.ui.restaurants.RestaurantDetailFragment
 
 
 class RestaurantAdapter(
-        list: List<Restaurant>,
+        list: MutableList<Restaurant>,
         private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
-    private var restaurantList: List<Restaurant> = list
+    private val restaurantList: MutableList<Restaurant> = list
+    private var copyList: MutableList<Restaurant> = list
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_restaurant_item, parent, false)) {
@@ -78,6 +74,8 @@ class RestaurantAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val holder = RestaurantViewHolder(inflater, parent)
+        copyList = mutableListOf()
+        copyList.addAll(restaurantList)
 
         return holder
 
@@ -87,25 +85,81 @@ class RestaurantAdapter(
         val restaurant: Restaurant = restaurantList[position]
         val previousItem: Restaurant? = if (position == 0) null else restaurantList[position - 1]
         holder.bind(restaurant, previousItem)
+
+        val mButtonMore: ImageButton = holder.itemView.findViewById(R.id.button_more)
+        val mButtonFood: ImageButton = holder.itemView.findViewById(R.id.button_food)
+        val mButtonEdit: ImageButton = holder.itemView.findViewById(R.id.button_edit_restaurant)
+
+        mButtonMore.setOnClickListener {
+            animateButtons(holder.itemView)
+        }
+
+        mButtonEdit.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("restaurantId", restaurantList[position].id)
+            it.findNavController().navigate(R.id.restaurantEditFragment, bundle)
+            animateButtons(holder.itemView)
+        }
+
+        mButtonFood.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("restaurantId", restaurantList[position].id)
+            bundle.putString("restaurantName", restaurantList[position].name)
+            //TODO Kontrola jestli mi přišel bundle a podle toho vyfiltrovat food
+            it.findNavController().navigate(R.id.navigation_food, bundle)
+            animateButtons(holder.itemView)
+        }
+
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt("restaurantId", restaurantList[position].id)
             it.findNavController().navigate(R.id.restaurantDetailFragment, bundle)
-            /*val detailFragment: Fragment = RestaurantDetailFragment()
-            val bundle = Bundle()
-            val transaction: FragmentTransaction = fragmentManager?.beginTransaction()!!
-            bundle.putInt("restaurantId", list[position].id)
-            detailFragment.arguments = bundle;
-            transaction.replace(R.id.nav_host_fragment, detailFragment) // give your fragment container id in first parameter
-            transaction.addToBackStack(null) // if written, this transaction will be added to backstack
-            transaction.commit()*/
         }
     }
 
     override fun getItemCount(): Int = restaurantList.size
 
-    fun setData(newList: List<Restaurant>) {
-        restaurantList = newList
+    fun setData(newList: MutableList<Restaurant>) {
+        restaurantList.clear()
+        restaurantList.addAll(newList)
         this.notifyDataSetChanged()
+    }
+
+    private fun animateButtons(view: View) {
+        val buttonMore: ImageButton = view.findViewById(R.id.button_more)
+        val actionButtons: View = view.findViewById(R.id.action_buttons)
+
+        if (buttonMore.visibility == View.VISIBLE) {
+            hideButton(buttonMore)
+            showButton(actionButtons)
+
+        } else {
+            showButton(buttonMore)
+            hideButton(actionButtons)
+        }
+    }
+
+    private fun hideButton(view: View) {
+        view.visibility = View.GONE
+    }
+
+    private fun showButton(view: View) {
+        view.visibility = View.VISIBLE
+    }
+
+    fun searchFilter(text: String) {
+        var text = text
+        restaurantList.clear()
+        if (text.isEmpty()) {
+            restaurantList.addAll(copyList)
+        } else {
+            text = text.toLowerCase()
+            for (item in copyList) {
+                if (item.name.toLowerCase().contains(text)) {
+                    restaurantList.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
     }
 }

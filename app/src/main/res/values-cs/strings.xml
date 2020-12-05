@@ -46,4 +46,9 @@
     <string name="restaurant_detail">Restaurant detail</string>
     <string name="restaurant_add">Add restaurant</string>
     <string name="confirm">Confirm</string>
+    <string name="restaurant_edit">Edit restaurant</string>
+    <string name="restaurant_delete">Delete restaurant?</string>
+    <string name="restaurant_delete_title">Delete restaurant</string>
+    <string name="cancel">Cancel</string>
+    <string name="toast_empty_name">Empty name!</string>
 </resources>

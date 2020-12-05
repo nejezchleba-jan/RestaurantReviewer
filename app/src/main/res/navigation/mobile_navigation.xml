@@ -18,7 +18,12 @@
             app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_navigation_restaurant_to_restaurantAddFragment"
-            app:destination="@id/restaurantAddFragment" />
+            app:destination="@id/restaurantAddFragment"
+            app:popUpTo="@id/navigation_restaurant" />
+        <action
+            android:id="@+id/action_navigation_restaurant_to_restaurantEditFragment"
+            app:destination="@id/restaurantEditFragment"
+            app:popUpTo="@id/navigation_restaurant" />
     </fragment>
 
     <fragment
@@ -43,5 +48,10 @@
         android:name="com.example.restaurantreviewer.ui.restaurants.RestaurantAddFragment"
         android:label="@string/restaurant_add"
         tools:layout="@layout/fragment_add_restaurant" />
+    <fragment
+        android:id="@+id/restaurantEditFragment"
+        android:name="com.example.restaurantreviewer.ui.restaurants.RestaurantEditFragment"
+        android:label="@string/restaurant_edit"
+        tools:layout="@layout/fragment_edit_restaurant" />
 
 </navigation>

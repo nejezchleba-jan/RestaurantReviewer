@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dark_gray"
     android:fillViewport="true"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.restaurants.RestaurantEditFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/layout_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:gravity="center_horizontal"
+            android:gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@+id/label_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,8 @@
                 android:id="@+id/button_delete_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/rounded_delete"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
@@ -36,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/delete_restaurant" />
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/button_confirm_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/confirm_edit">
 
-            </ImageButton>
+            </ImageButton>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -58,7 +60,7 @@
         android:id="@+id/label_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:text="@string/info"
         android:fontFamily="sans-serif-light"

@@ -1,7 +1,9 @@
 package com.example.restaurantreviewer.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.restaurantreviewer.model.Food
+import com.example.restaurantreviewer.model.Restaurant
 
 @Dao
 interface FoodItemDao  {
@@ -9,6 +11,8 @@ interface FoodItemDao  {
     fun getAllItems(): MutableList<Food>
     @Query("SELECT * FROM Food WHERE id == (:itemId)")
     fun getItemById(itemId: Int): Food
+    @Query("SELECT * FROM Food WHERE RestaurantId = (:restaurantId)")
+    fun getItemsByRestaurant(restaurantId: Int): LiveData<Food>
     @Insert()
     fun insertItem(item: Food)
     @Update()
