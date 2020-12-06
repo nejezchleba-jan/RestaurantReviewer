@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/navigation_restaurant"
-        android:name="com.example.restaurantreviewer.ui.home.HomeFragment"
-        android:label="@string/title_restaurants"
+        android:name="com.example.restaurantreviewer.ui.restaurants.RestaurantFragment"
+        android:label="@string/restaurant_list"
         tools:layout="@layout/fragment_restaurants" >
         <action
             android:id="@+id/action_navigation_restaurant_to_restaurantDetailFragment"
@@ -27,6 +27,10 @@
         <action
             android:id="@+id/action_navigation_restaurant_to_navigation_food"
             app:destination="@id/navigation_food" />
+        <action
+            android:id="@+id/action_navigation_restaurant_to_listOptionsRestaurantDialog"
+            app:destination="@id/listOptionsRestaurantDialog"
+            app:popUpTo="@id/navigation_restaurant" />
     </fragment>
 
     <fragment
@@ -84,5 +88,10 @@
         android:name="com.example.restaurantreviewer.ui.food.FoodEditFragment"
         android:label="@string/food_edit"
         tools:layout="@layout/fragment_edit_food" />
+    <fragment
+        android:id="@+id/listOptionsRestaurantDialog"
+        android:name="com.example.restaurantreviewer.ui.restaurants.ListOptionsRestaurantDialog"
+        android:label="LIST RESTAURANTS"
+        tools:layout="@layout/list_options_layout" />
 
 </navigation>

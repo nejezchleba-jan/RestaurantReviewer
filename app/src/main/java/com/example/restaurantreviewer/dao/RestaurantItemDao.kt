@@ -6,7 +6,7 @@ import com.example.restaurantreviewer.model.Restaurant
 
 @Dao
 interface RestaurantItemDao  {
-    @Query("SELECT * FROM Restaurants ORDER BY Created Desc, Name Desc ")
+    @Query("SELECT * FROM Restaurants")
     fun getAllItems(): LiveData<MutableList<Restaurant>>
     @Query("SELECT * FROM Restaurants WHERE Id = (:itemId)")
     fun getItemById(itemId: Int): LiveData<Restaurant>

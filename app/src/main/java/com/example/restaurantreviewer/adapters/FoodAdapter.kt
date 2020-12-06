@@ -91,7 +91,7 @@ class FoodAdapter(
                 }
                 FoodGroupingEnum.RESTAURANT -> {
                     if(previous == null || food.restaurantId != previous.restaurantId) view?.visibility = View.VISIBLE
-                    view?.text = food.created.toString();
+                    view?.text = restaurantList.find { it.id == food.restaurantId }?.name
                 }
             }
         }

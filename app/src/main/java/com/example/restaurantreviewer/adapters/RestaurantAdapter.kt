@@ -1,4 +1,5 @@
 package com.example.restaurantreviewer.adapters
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,17 +13,31 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantreviewer.R
+import com.example.restaurantreviewer.enums.RestaurantFilterEnum
 import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
+import com.example.restaurantreviewer.enums.RestaurantOrderEnum
 import com.example.restaurantreviewer.model.Restaurant
+import com.example.restaurantreviewer.utils.EnumConverters
+import java.util.*
 
 
 class RestaurantAdapter(
-        list: MutableList<Restaurant>,
-        private val grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE)
+        list: MutableList<Restaurant>)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     private val restaurantList: MutableList<Restaurant> = list
-    private var copyList: MutableList<Restaurant> = list
+    private lateinit var copyList: MutableList<Restaurant>
+
+    init {
+        copyList = mutableListOf()
+        copyList.addAll(list)
+    }
+
+    var grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE
+    var order: RestaurantOrderEnum = RestaurantOrderEnum.NAME
+    var filter: RestaurantFilterEnum = RestaurantFilterEnum.NONE
+    var filterVal: String = ""
+
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_restaurant_item, parent, false)) {
@@ -35,6 +50,7 @@ class RestaurantAdapter(
         private var mButtonMore: AppCompatImageButton? = null
         private var mEditButton: AppCompatImageButton? = null
         private var mFoodButton: AppCompatImageButton? = null
+
 
 
         init {
@@ -50,6 +66,7 @@ class RestaurantAdapter(
         }
 
         fun bind(restaurant: Restaurant, previous: Restaurant?) {
+            mHeader?.visibility = View.GONE
             setHeader(restaurant, previous, mHeader)
             mNameView?.text = restaurant.name
             mLocationView?.text = restaurant.location
@@ -60,12 +77,17 @@ class RestaurantAdapter(
         private fun setHeader(restaurant: Restaurant, previous: Restaurant?, view: TextView?) {
             when(grouping) {
                 RestaurantGroupingEnum.DATE -> {
-                    if (previous == null || restaurant.created != previous.created) view?.visibility = View.VISIBLE
-                    view?.text = restaurant.created.toString()
+                    if (previous == null || restaurant.created != previous.created) {
+                        view?.visibility = View.VISIBLE
+                        view?.text = restaurant.created.toString()
+                    }
                 }
                 RestaurantGroupingEnum.TYPE -> {
-                    if (previous == null || restaurant.type != previous.type) view?.visibility = View.VISIBLE
-                    view?.text = restaurant.type.toString()
+                    if (previous == null || restaurant.type != previous.type) {
+                        view?.visibility = View.VISIBLE
+                        view?.text = restaurant.type.toString()
+                    }
+
                 }
             }
         }
@@ -74,9 +96,6 @@ class RestaurantAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val holder = RestaurantViewHolder(inflater, parent)
-        copyList = mutableListOf()
-        copyList.addAll(restaurantList)
-
         return holder
 
     }
@@ -119,9 +138,12 @@ class RestaurantAdapter(
 
     override fun getItemCount(): Int = restaurantList.size
 
-    fun setData(newList: MutableList<Restaurant>) {
+    fun setData(newList: MutableList<Restaurant>, converters: EnumConverters) {
         restaurantList.clear()
-        restaurantList.addAll(newList)
+        restaurantList.addAll(newList.asReversed())
+        copyList.clear()
+        copyList.addAll(newList.asReversed())
+        applyChangesToList(converters)
         this.notifyDataSetChanged()
     }
 
@@ -147,17 +169,68 @@ class RestaurantAdapter(
         view.visibility = View.VISIBLE
     }
 
-    fun searchFilter(_text: String) {
+    fun searchFilter(_text: String, converters: EnumConverters) {
         var text = _text
-        restaurantList.clear()
-        if (text.isEmpty()) {
-            restaurantList.addAll(copyList)
-        } else {
-            text = text.toLowerCase()
-            for (item in copyList) {
-                if (item.name.toLowerCase().contains(text)) {
-                    restaurantList.add(item)
+        applyChangesToList(converters)
+        if (text.isNotEmpty()) {
+            text = text.toLowerCase(Locale.ROOT)
+            val filteredList: MutableList<Restaurant> = mutableListOf()
+            for (item in restaurantList) {
+                if (item.name.toLowerCase(Locale.ROOT).contains(text)) {
+                    filteredList.add(item)
                 }
+            }
+            restaurantList.clear()
+            restaurantList.addAll(filteredList)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun changeGrouping(newGroup: RestaurantGroupingEnum) {
+        grouping = newGroup
+    }
+
+    fun changeOrder(newOrder: RestaurantOrderEnum) {
+        order = newOrder
+    }
+
+    fun applyChangesToList(converters: EnumConverters) {
+        applyFilter(converters)
+
+        if(grouping == RestaurantGroupingEnum.TYPE) {
+                restaurantList.sortedWith(compareBy({ it.type }, { it.name }))
+
+        } else {
+            restaurantList.sortedWith(compareBy({ it.created }, { it.name }))
+        }
+        notifyDataSetChanged()
+    }
+
+    fun changeFilter(filterEnum: RestaurantFilterEnum, value: String) {
+        filter = filterEnum
+        filterVal = value
+    }
+
+    fun applyFilter(converters: EnumConverters) {
+        restaurantList.clear()
+        when(filter) {
+            RestaurantFilterEnum.NONE -> {
+                restaurantList.addAll(copyList)
+            }
+            RestaurantFilterEnum.NAME -> {
+                restaurantList.addAll(copyList.filter { it.name.contains(filterVal) })
+            }
+            RestaurantFilterEnum.LOCATION -> {
+                restaurantList.addAll(copyList.filter { it.location?.contains(filterVal)!! })
+            }
+            RestaurantFilterEnum.RATING_LESS -> {
+                restaurantList.addAll(copyList.filter { it.ratingFinal <= filterVal.toFloat() })
+            }
+            RestaurantFilterEnum.RATING_MORE -> {
+                restaurantList.addAll(copyList.filter { it.ratingFinal >= filterVal.toFloat() })
+            }
+            RestaurantFilterEnum.TYPE -> {
+                restaurantList.addAll(copyList.filter { it.type == converters.convertRestaurantTypeString(filterVal) })
             }
         }
         notifyDataSetChanged()

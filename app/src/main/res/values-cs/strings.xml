@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Restaurant Reviewer</string>
     <string name="title_restaurants">Restaurants</string>
-    <string name="title_food">Food</string>
     <string name="title_settings">Settings</string>
     <string name="name">Name</string>
     <string name="location">Location</string>
@@ -33,7 +32,7 @@
     <string name="restaurant_picture">Restaurant picture</string>
     <string name="delete_food">Delete food</string>
     <string name="confirm_edit">Confirm edit</string>
-    <string name="about">About</string>
+    <string name="about">ABOUT</string>
     <string name="list_options">List options</string>
     <string name="detail_food">Detail food</string>
     <string name="unknown">Unknown</string>
@@ -43,16 +42,26 @@
     <string name="bistro">Bistro</string>
     <string name="sweet_shop">Sweet-shop</string>
     <string name="date">Date</string>
-    <string name="restaurant_detail">Restaurant detail</string>
-    <string name="restaurant_add">Add restaurant</string>
+    <string name="restaurant_detail">RESTAURANT DETAIL</string>
+    <string name="restaurant_add">ADD RESTAURANT</string>
     <string name="confirm">Confirm</string>
-    <string name="restaurant_edit">Edit restaurant</string>
+    <string name="restaurant_edit">EDIT RESTAURANT</string>
     <string name="restaurant_delete">Delete this restaurant?</string>
     <string name="food_delete">Delete this food?</string>
-    <string name="food_edit">Edit food</string>
-    <string name="food_detail">Food detail</string>
-    <string name="food_add">Add food</string>
+    <string name="food_edit">EDIT FOOD</string>
+    <string name="food_detail">FOOD DETAIL</string>
+    <string name="food_add">ADD FOOD</string>
+    <string name="restaurant_list">RESTAURANT</string>
+    <string name="title_food">FOOD</string>
     <string name="restaurant_delete_title">Delete restaurant</string>
     <string name="cancel">Cancel</string>
     <string name="toast_empty_name">Empty name!</string>
+    <string name="group_by">Group by:</string>
+    <string name="filter_value">Filter value:</string>
+    <string name="list_order">List order</string>
+    <string name="filter_by">Filter by:</string>
+    <string name="filter">Filter</string>
+    <string name="filter_none">None</string>
+    <string name="filter_rating_less">Rating lower</string>
+    <string name="filter_rating_more">Rating higher</string>
 </resources>

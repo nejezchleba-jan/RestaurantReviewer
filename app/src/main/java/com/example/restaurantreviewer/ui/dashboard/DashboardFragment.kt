@@ -1,9 +1,7 @@
 package com.example.restaurantreviewer.ui.dashboard
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -29,10 +27,30 @@ class DashboardFragment : Fragment() {
 
     private lateinit var foodViewModel: FoodViewModel
     private lateinit var foodAdapter: FoodAdapter
+    private var mainView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.add_menu, menu)
+        val menuItem = menu.findItem(R.id.action_add)
+        val view = menuItem.actionView
+        view.setOnClickListener {
+            onOptionsItemSelected(menuItem)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when (id) {
+            R.id.action_add -> add()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -54,8 +72,7 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val mButtonAdd: FloatingActionButton = view.findViewById(R.id.button_add_food)
+        mainView = view
         val mSearchView: androidx.appcompat.widget.SearchView = view.findViewById(R.id.search_food)
 
         mSearchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -70,20 +87,20 @@ class DashboardFragment : Fragment() {
             }
         })
 
-        mButtonAdd.setOnClickListener {
-            val bundle = Bundle()
-            if(foodAdapter.restaurantList.size == 0) {
-                Snackbar.make(view, "Please create a restaurant first.", Snackbar.LENGTH_SHORT).show()
-            }
-            else {
-                bundle.putString("restaurants", JsonConverters().convertListRestaurantToJson(foodAdapter.restaurantList))
-                it.findNavController().navigate(R.id.foodAddFragment, bundle)
-            }
-        }
-
         recycler_food.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = foodAdapter
+        }
+    }
+
+    private fun add() {
+        val bundle = Bundle()
+        if(foodAdapter.restaurantList.size == 0) {
+            Toast.makeText(requireContext(), "Please create a restaurant first.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            bundle.putString("restaurants", JsonConverters().convertListRestaurantToJson(foodAdapter.restaurantList))
+            mainView?.findNavController()?.navigate(R.id.foodAddFragment, bundle)
         }
     }
 

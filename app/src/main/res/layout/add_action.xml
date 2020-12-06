@@ -5,17 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
-        android:id="@+id/button_confirm"
+        android:id="@+id/button_add"
         android:clickable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/rounded_confirm"
-        android:backgroundTint="@color/dark_gray"
+        android:background="@drawable/rounded_item"
+        android:backgroundTint="@color/orange"
         android:contentDescription="@string/add_restaurant"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:src="@drawable/ic_done"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

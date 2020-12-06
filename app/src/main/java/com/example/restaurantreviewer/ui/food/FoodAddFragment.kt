@@ -90,7 +90,7 @@ class FoodAddFragment : Fragment() {
             items.add(it.name)
         }
         val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, items)
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_restaurant_type);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.adapter = spinnerArrayAdapter
     }
 
@@ -101,7 +101,7 @@ class FoodAddFragment : Fragment() {
             items.add(converters.convertFoodCurrencyEnum(it))
         }
         val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, items)
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_restaurant_type);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         spinner.adapter = spinnerArrayAdapter
     }
 
