@@ -14,9 +14,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.adapters.RestaurantAdapter
-import com.example.restaurantreviewer.enums.RestaurantFilterEnum
-import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
-import com.example.restaurantreviewer.enums.RestaurantOrderEnum
+import com.example.restaurantreviewer.enums.*
 import com.example.restaurantreviewer.utils.EnumConverters
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_restaurants.*
@@ -41,12 +39,24 @@ class RestaurantFragment : Fragment() {
         with(sharedPreferences.edit()) {
             if(!sharedPreferences.contains("filterVal_rest")) {
                 putString("filterVal_rest", "")
-            } else if(!sharedPreferences.contains("filter_rest")) {
+            }
+            if(!sharedPreferences.contains("filter_rest")) {
                 putString("filter_rest", converters.convertRestaurantFilterEnum(RestaurantFilterEnum.NONE))
-            } else if(!sharedPreferences.contains("groupBy_rest")) {
+            }
+            if(!sharedPreferences.contains("groupBy_rest")) {
                 putString("groupBy_rest", converters.convertRestaurantGroupingEnum(RestaurantGroupingEnum.DATE))
-            } else if(!sharedPreferences.contains("orderBy_rest")) {
+            }
+            if(!sharedPreferences.contains("orderBy_rest")) {
                 putString("orderBy_rest", converters.convertRestaurantOrderEnum(RestaurantOrderEnum.NAME))
+            }
+
+            //FOOD FILTER OFF
+
+            if(sharedPreferences.contains("filterVal_food")) {
+                putString("filterVal_food", "")
+            }
+            if(sharedPreferences.contains("filter_food")) {
+                putString("filter_food", converters.convertFoodFilterEnum(FoodFilterEnum.NONE))
             }
             apply()
         }
@@ -101,8 +111,6 @@ class RestaurantFragment : Fragment() {
         setUpPreferences()
         restaurantAdapter = RestaurantAdapter(mutableListOf())
         restaurantViewModel.mListRestaurant.observe(viewLifecycleOwner, Observer {
-           /* applyPreferences(restaurantAdapter)
-            restaurantAdapter.setData(it, converters)*/
             restaurantAdapter = RestaurantAdapter(it)
             recycler_restaurant.adapter = restaurantAdapter
             applyPreferences(recycler_restaurant.adapter as RestaurantAdapter)

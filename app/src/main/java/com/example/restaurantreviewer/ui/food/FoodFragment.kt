@@ -124,16 +124,29 @@ class FoodFragment : Fragment() {
         }
     }
 
+
     private fun setUpPreferences() {
         with(sharedPreferences.edit()) {
             if(!sharedPreferences.contains("filterVal_food")) {
                 putString("filterVal_food", "")
-            } else if(!sharedPreferences.contains("filter_food")) {
+            }
+            if(!sharedPreferences.contains("filter_food")) {
                 putString("filter_food", converters.convertFoodFilterEnum(FoodFilterEnum.NONE))
-            } else if(!sharedPreferences.contains("groupBy_food")) {
+            }
+            if(!sharedPreferences.contains("groupBy_food")) {
                 putString("groupBy_food", converters.convertFoodGroupingEnum(FoodGroupingEnum.DATE))
-            } else if(!sharedPreferences.contains("orderBy_food")) {
+            }
+            if(!sharedPreferences.contains("orderBy_food")) {
                 putString("orderBy_food", converters.convertFoodOrderEnum(FoodOrderEnum.NAME))
+            }
+
+            //RESTAURANT FILTER OFF
+
+            if(sharedPreferences.contains("filterVal_rest")) {
+                putString("filterVal_rest", "")
+            }
+            if(sharedPreferences.contains("filter_rest")) {
+                putString("filter_rest", converters.convertFoodFilterEnum(FoodFilterEnum.NONE))
             }
             apply()
         }
