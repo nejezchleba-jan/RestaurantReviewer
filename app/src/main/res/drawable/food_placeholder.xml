@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <shape>
+        <corners android:radius="8dp" />
+        <solid android:color="@color/orange" />
+    </shape>
+</item>
+    <item android:drawable="@drawable/ic_food" android:gravity="center" android:height="50dp" android:width="50dp"/>
+</layer-list>

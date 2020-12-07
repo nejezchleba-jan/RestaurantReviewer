@@ -114,7 +114,6 @@ class RestaurantFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mButtonList: ImageButton = view.findViewById(R.id.button_list_options)
         val mSearchView: androidx.appcompat.widget.SearchView = view.findViewById(R.id.search_restaurant)
-        val converters = EnumConverters(requireContext())
         mainView = view
 
 

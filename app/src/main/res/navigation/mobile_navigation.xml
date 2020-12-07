@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_food"
-        android:name="com.example.restaurantreviewer.ui.dashboard.DashboardFragment"
+        android:name="com.example.restaurantreviewer.ui.food.FoodFragment"
         android:label="@string/title_food"
         tools:layout="@layout/fragment_food" >
         <action

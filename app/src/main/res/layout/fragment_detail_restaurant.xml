@@ -15,77 +15,45 @@
         android:padding="20dp">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_actions"
+        <TextView
+            android:id="@+id/name_restaurant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            app:layout_constraintBottom_toTopOf="@+id/name_restaurant"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:drawableTint="@color/white"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/restaurant"
+            android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@drawable/ic_restaurant" />
 
-            <!--<ImageButton
-                android:id="@+id/button_edit_food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded_delete"
-                android:contentDescription="@string/detail_food"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:src="@drawable/ic_food"
-                android:tint="@color/orange"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_image_restaurant"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_restaurant">
+
+            <ImageView
+                android:id="@+id/image_restaurant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/restaurant_picture"
+                android:src="@drawable/ic_image"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/button_edit_restaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded_delete"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:src="@drawable/ic_edit"
-                android:tint="@color/orange"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <TextView
-        android:id="@+id/name_restaurant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_restaurant"
-        android:drawableTint="@color/white"
-        android:gravity="center"
-        android:text="@string/restaurant"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:fontFamily="sans-serif-light"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_actions">
-    </TextView>
-
-        <ImageView
-            android:id="@+id/image_food"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/control_gray"
-            android:src="@drawable/ic_image"
-            app:layout_constraintBottom_toTopOf="@+id/layout_location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_restaurant" />
 
         <LinearLayout
             android:id="@+id/layout_location"
@@ -96,7 +64,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_food">
+            app:layout_constraintTop_toBottomOf="@+id/layout_image_restaurant">
 
                 <TextView
                     android:id="@+id/label_location"

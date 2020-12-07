@@ -1,21 +1,29 @@
 package com.example.restaurantreviewer.ui.restaurants
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import com.squareup.picasso.Picasso
 
 class RestaurantDetailFragment : Fragment() {
     private lateinit var restaurantViewModel: RestaurantViewModel
     private var mName: TextView? = null
+    private var mImage: ImageView? = null
     private var mLocation: TextView? = null
     private var mType: TextView? = null
     private var mNote: TextView? = null
@@ -40,8 +48,8 @@ class RestaurantDetailFragment : Fragment() {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO Databiding?
         mName = view.findViewById(R.id.name_restaurant)
+        mImage = view.findViewById(R.id.image_restaurant)
         mLocation = view.findViewById(R.id.text_location)
         mType = view.findViewById(R.id.text_type)
         mNote = view.findViewById(R.id.text_note)
@@ -56,6 +64,12 @@ class RestaurantDetailFragment : Fragment() {
             val tmp = restaurantViewModel.getItem(it.getInt("restaurantId"))
             tmp.observe(viewLifecycleOwner, Observer { item ->
                 selectedRestaurant = item
+                if(item.image != null) {
+                    Picasso.with(context).load(Uri.parse(item.image))
+                        .fit()
+                        .centerCrop()
+                        .into(mImage)
+                }
                 mName?.text = item.name
                 mLocation?.text = item.location
                 mType?.text = converter.convertRestaurantTypeEnum(item.type);
@@ -73,6 +87,8 @@ class RestaurantDetailFragment : Fragment() {
         if(value == -1.0F)  view?.visibility = View.GONE
         else view?.rating = value
     }
+
+
 
     companion object {
         fun newInstance(): RestaurantDetailFragment = RestaurantDetailFragment()

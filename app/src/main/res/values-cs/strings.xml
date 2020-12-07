@@ -62,6 +62,7 @@
     <string name="filter_by">Filter by:</string>
     <string name="filter">Filter</string>
     <string name="filter_none">None</string>
+    <string name="filter_restaurant">Restaurant</string>
     <string name="filter_rating_less">Rating lower</string>
     <string name="filter_rating_more">Rating higher</string>
 </resources>

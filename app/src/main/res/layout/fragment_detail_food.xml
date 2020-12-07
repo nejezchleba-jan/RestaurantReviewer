@@ -57,19 +57,29 @@
             app:drawableTopCompat="@drawable/ic_food">
         </TextView>
 
-        <ImageView
-            android:id="@+id/image_food"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/control_gray"
-            android:src="@drawable/ic_image"
-            app:layout_constraintBottom_toTopOf="@+id/layout_restaurant"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_image_food"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_food"
-            android:contentDescription="@string/edit_food" />
+            app:layout_constraintTop_toBottomOf="@id/name_food">
+
+            <ImageView
+                android:id="@+id/image_food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_image"
+                android:contentDescription="@string/restaurant_picture"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/layout_restaurant"
@@ -80,7 +90,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_food">
+            app:layout_constraintTop_toBottomOf="@+id/layout_image_food">
 
 
                 <TextView

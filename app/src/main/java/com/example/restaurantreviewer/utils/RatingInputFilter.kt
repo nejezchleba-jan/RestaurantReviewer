@@ -22,12 +22,13 @@ class RatingInputFilter {
                 val input = s.toString()
                 var value = 0
                 try {
-                    if (input.isEmpty() || input.length > 3 || input.toInt() > 100) {
-                        value = 100
+                    if (input.isEmpty() || input.toInt() < 0) {
+                        value = 0
                         view.setText(value.toString())
                         view.setSelection(value.toString().length)
-                    } else if (input.toInt() < 0) {
-                        value = 0
+                    }
+                    else if (input.length > 3 || input.toInt() > 100) {
+                        value = 100
                         view.setText(value.toString())
                         view.setSelection(value.toString().length)
                     }

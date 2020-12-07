@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_gray"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.food.FoodFragment">
 
     <LinearLayout
         android:id="@+id/layout_list_options"
@@ -31,7 +31,7 @@
         </androidx.appcompat.widget.SearchView>
 
         <ImageButton
-            android:id="@+id/button_filter"
+            android:id="@+id/button_list_options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"

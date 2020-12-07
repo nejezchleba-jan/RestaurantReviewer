@@ -140,4 +140,25 @@ class EnumConverters(private val context: Context) {
             else -> RestaurantFilterEnum.NONE
         }
     }
+
+    fun convertFoodFilterEnum(enumType: FoodFilterEnum) : String {
+        return when(enumType) {
+            FoodFilterEnum.NONE -> context.getString(R.string.filter_none)
+            FoodFilterEnum.NAME -> context.getString(R.string.name)
+            FoodFilterEnum.RESTAURANT -> context.getString(R.string.restaurant)
+            FoodFilterEnum.RATING_LESS -> context.getString(R.string.filter_rating_less)
+            FoodFilterEnum.RATING_MORE -> context.getString(R.string.filter_rating_more)
+        }
+    }
+
+    fun convertFoodFilterString(string: String) : FoodFilterEnum {
+        return when(string) {
+            context.getString(R.string.filter_none) -> FoodFilterEnum.NONE
+            context.getString(R.string.name) -> FoodFilterEnum.NAME
+            context.getString(R.string.filter_restaurant) -> FoodFilterEnum.RESTAURANT
+            context.getString(R.string.filter_rating_less) -> FoodFilterEnum.RATING_LESS
+            context.getString(R.string.filter_rating_more) -> FoodFilterEnum.RATING_MORE
+            else -> FoodFilterEnum.NONE
+        }
+    }
 }

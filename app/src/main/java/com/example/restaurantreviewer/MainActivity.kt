@@ -1,5 +1,7 @@
 package com.example.restaurantreviewer
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -7,6 +9,8 @@ import android.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,7 +21,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
-
+    private val REQUEST_READ_STORAGE_REQUEST_CODE = 0
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +34,30 @@ class MainActivity : AppCompatActivity() {
         //ActionBar color change
         val actionBar: ActionBar? = supportActionBar;
         actionBar?.setBackgroundDrawable(ContextCompat.getDrawable(applicationContext!!, R.drawable.action_bar));
-
+        requestAppPermissions()
         appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_food, R.id.navigation_restaurant, R.id.navigation_about))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private fun requestAppPermissions() {
+        if (hasReadPermissions()) {
+            return
+        }
+        ActivityCompat.requestPermissions(this, arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ), REQUEST_READ_STORAGE_REQUEST_CODE) // your request code
+    }
+
+    private fun hasReadPermissions(): Boolean {
+        return ContextCompat.checkSelfPermission(baseContext, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
     }
 }
 

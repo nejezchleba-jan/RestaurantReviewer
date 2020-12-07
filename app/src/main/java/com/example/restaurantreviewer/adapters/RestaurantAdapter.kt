@@ -1,5 +1,6 @@
 package com.example.restaurantreviewer.adapters
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,25 +19,29 @@ import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
 import com.example.restaurantreviewer.enums.RestaurantOrderEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import com.squareup.picasso.Picasso
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
 class RestaurantAdapter(
-        list: MutableList<Restaurant>)
+    list: MutableList<Restaurant>
+)
 : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     private val restaurantList: MutableList<Restaurant> = list
-    private lateinit var copyList: MutableList<Restaurant>
-
-    init {
-        copyList = mutableListOf()
-        copyList.addAll(list)
-    }
-
+    private var copyList: MutableList<Restaurant> = mutableListOf()
     var grouping: RestaurantGroupingEnum = RestaurantGroupingEnum.DATE
     var order: RestaurantOrderEnum = RestaurantOrderEnum.NAME
     var filter: RestaurantFilterEnum = RestaurantFilterEnum.NONE
     var filterVal: String = ""
+
+    init {
+        copyList.addAll(list)
+    }
+
+
 
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
@@ -65,13 +70,26 @@ class RestaurantAdapter(
             mFoodButton = itemView.findViewById(R.id.button_food)
         }
 
-        fun bind(restaurant: Restaurant, previous: Restaurant?) {
+        fun bind(restaurant: Restaurant, previous: Restaurant?, context: Context) {
             mHeader?.visibility = View.GONE
             setHeader(restaurant, previous, mHeader)
-            mNameView?.text = restaurant.name
-            mLocationView?.text = restaurant.location
-            //TODO Images load/save
+            mNameView?.text = if(restaurant.name.length > 20) restaurant.name.substring(0, 20) + "..." else restaurant.name
+            mLocationView?.text = if(restaurant.location?.length!! > 20) restaurant.location!!.substring(
+                0,
+                20
+            ) + "..." else restaurant.location
+            if(restaurant.image != null) Picasso
+                                    .with(context)
+                                    .load(Uri.parse(restaurant.image))
+                                    .fit()
+                                    .into(mImageView)
             mRatingBar?.rating = restaurant.ratingFinal
+        }
+
+        fun formatDate(date: LocalDate): String {
+            val formatters: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            val text: String = date.format(formatters)
+            return LocalDate.parse(text, formatters).format(formatters).toString()
         }
 
         private fun setHeader(restaurant: Restaurant, previous: Restaurant?, view: TextView?) {
@@ -79,7 +97,7 @@ class RestaurantAdapter(
                 RestaurantGroupingEnum.DATE -> {
                     if (previous == null || restaurant.created != previous.created) {
                         view?.visibility = View.VISIBLE
-                        view?.text = restaurant.created.toString()
+                        view?.text = formatDate(restaurant.created)
                     }
                 }
                 RestaurantGroupingEnum.TYPE -> {
@@ -103,7 +121,7 @@ class RestaurantAdapter(
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val restaurant: Restaurant = restaurantList[position]
         val previousItem: Restaurant? = if (position == 0) null else restaurantList[position - 1]
-        holder.bind(restaurant, previousItem)
+        holder.bind(restaurant, previousItem, holder.itemView.context)
 
         val mButtonMore: ImageButton = holder.itemView.findViewById(R.id.button_more)
         val mButtonFood: ImageButton = holder.itemView.findViewById(R.id.button_food)
@@ -122,9 +140,7 @@ class RestaurantAdapter(
 
         mButtonFood.setOnClickListener{
             val bundle = Bundle()
-            bundle.putInt("restaurantId", restaurantList[position].id)
             bundle.putString("restaurantName", restaurantList[position].name)
-            //TODO Kontrola jestli mi přišel bundle a podle toho vyfiltrovat food
             it.findNavController().navigate(R.id.navigation_food, bundle)
             animateButtons(holder.itemView)
         }
@@ -198,7 +214,7 @@ class RestaurantAdapter(
         applyFilter(converters)
 
         if(grouping == RestaurantGroupingEnum.TYPE) {
-                restaurantList.sortedWith(compareBy({ it.type }, { it.name }))
+            restaurantList.sortedWith(compareBy({ it.type }, { it.name }))
 
         } else {
             restaurantList.sortedWith(compareBy({ it.created }, { it.name }))
@@ -230,7 +246,11 @@ class RestaurantAdapter(
                 restaurantList.addAll(copyList.filter { it.ratingFinal >= filterVal.toFloat() })
             }
             RestaurantFilterEnum.TYPE -> {
-                restaurantList.addAll(copyList.filter { it.type == converters.convertRestaurantTypeString(filterVal) })
+                restaurantList.addAll(copyList.filter {
+                    it.type == converters.convertRestaurantTypeString(
+                        filterVal
+                    )
+                })
             }
         }
         notifyDataSetChanged()
