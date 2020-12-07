@@ -19,6 +19,7 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
 
 
@@ -93,7 +94,6 @@ class RestaurantAddFragment : Fragment() {
                 )
                 gallery.flags = (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
                 startActivityForResult(gallery, LOAD_IMAGE_RESULTS)
-                mButtonDeleteImage?.visibility = View.VISIBLE
             } else {
                 requestAppPermissions()
             }
@@ -120,6 +120,7 @@ class RestaurantAddFragment : Fragment() {
                     .fit()
                     .centerCrop()
                     .into(mImageView)
+                mButtonDeleteImage?.visibility = View.VISIBLE
             }
         }
     }

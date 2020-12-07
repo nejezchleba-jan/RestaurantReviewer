@@ -101,7 +101,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     app:layout_constraintEnd_toEndOf="parent"
-    android:layout_margin="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/restaurant"
     app:layout_constraintBottom_toTopOf="@id/name">
@@ -110,7 +111,6 @@
         android:id="@+id/image_food"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
         android:src="@drawable/ic_image"
         android:contentDescription="@string/restaurant_picture"
         android:scaleType="fitCenter"

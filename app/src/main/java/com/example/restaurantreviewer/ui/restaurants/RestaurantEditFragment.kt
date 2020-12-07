@@ -22,6 +22,7 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
 
 
@@ -150,7 +151,7 @@ class RestaurantEditFragment : Fragment() {
             val tmp = restaurantViewModel.getItem(it.getInt("restaurantId"))
             tmp.observe(viewLifecycleOwner, Observer { item ->
                 selectedRestaurant = item
-                if(item.image != null) {
+                if(item.image?.isNotEmpty() == true) {
                     Picasso.with(requireContext()).load(Uri.parse(item.image))
                         .fit()
                         .centerCrop()
@@ -219,7 +220,8 @@ class RestaurantEditFragment : Fragment() {
                             dialog.cancel()
                         })
             }
-            builder.setMessage("").setTitle(R.string.restaurant_delete)
+            builder.setMessage(R.string.restaurant_delete_message)
+                    .setTitle(R.string.restaurant_delete)
 
             builder.create()
         }

@@ -17,8 +17,10 @@ import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.enums.RestaurantFilterEnum
 import com.example.restaurantreviewer.enums.RestaurantGroupingEnum
 import com.example.restaurantreviewer.enums.RestaurantOrderEnum
+import com.example.restaurantreviewer.enums.RestaurantTypeEnum
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
+import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -40,9 +42,6 @@ class RestaurantAdapter(
     init {
         copyList.addAll(list)
     }
-
-
-
 
     inner class RestaurantViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_restaurant_item, parent, false)) {
@@ -82,6 +81,7 @@ class RestaurantAdapter(
                                     .with(context)
                                     .load(Uri.parse(restaurant.image))
                                     .fit()
+                                    .transform(TransformRoundedImage())
                                     .into(mImageView)
             mRatingBar?.rating = restaurant.ratingFinal
         }
@@ -211,14 +211,22 @@ class RestaurantAdapter(
     }
 
     fun applyChangesToList(converters: EnumConverters) {
-        applyFilter(converters)
-
+        if(copyList.isEmpty()) return
+        restaurantList.clear()
+        var list: MutableList<Restaurant> = mutableListOf()
         if(grouping == RestaurantGroupingEnum.TYPE) {
-            restaurantList.sortedWith(compareBy({ it.type }, { it.name }))
+            val typeComparator = compareBy<Restaurant> ({ it.type }, { it.name })
+            list.addAll(restaurantList)
+            list.sortWith(typeComparator)
 
         } else {
-            restaurantList.sortedWith(compareBy({ it.created }, { it.name }))
+            val createdComparator = compareBy<Restaurant> ({ it.created }, { it.name })
+            list.addAll(restaurantList)
+            list.sortWith(createdComparator)
+            list = list.asReversed()
         }
+        copyList.addAll(list)
+        applyFilter(converters)
         notifyDataSetChanged()
     }
 

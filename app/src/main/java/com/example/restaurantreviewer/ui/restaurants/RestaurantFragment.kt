@@ -101,9 +101,11 @@ class RestaurantFragment : Fragment() {
         setUpPreferences()
         restaurantAdapter = RestaurantAdapter(mutableListOf())
         restaurantViewModel.mListRestaurant.observe(viewLifecycleOwner, Observer {
-            restaurantAdapter.setData(it, converters)
-            applyPreferences(restaurantAdapter)
+           /* applyPreferences(restaurantAdapter)
+            restaurantAdapter.setData(it, converters)*/
+            restaurantAdapter = RestaurantAdapter(it)
             recycler_restaurant.adapter = restaurantAdapter
+            applyPreferences(recycler_restaurant.adapter as RestaurantAdapter)
         })
         return inflater.inflate(R.layout.fragment_restaurants, container, false)
     }
@@ -139,6 +141,7 @@ class RestaurantFragment : Fragment() {
         recycler_restaurant.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = restaurantAdapter
+            applyPreferences(recycler_restaurant.adapter as RestaurantAdapter)
         }
     }
 

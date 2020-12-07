@@ -1,17 +1,15 @@
 package com.example.restaurantreviewer.ui.restaurants
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -64,16 +62,29 @@ class RestaurantDetailFragment : Fragment() {
             val tmp = restaurantViewModel.getItem(it.getInt("restaurantId"))
             tmp.observe(viewLifecycleOwner, Observer { item ->
                 selectedRestaurant = item
-                if(item.image != null) {
+                if(item.image?.isNotEmpty()!!) {
                     Picasso.with(context).load(Uri.parse(item.image))
                         .fit()
                         .centerCrop()
                         .into(mImage)
+                } else {
+                    val layout: ConstraintLayout = view.findViewById(R.id.layout_image_restaurant)
+                    layout.visibility = View.GONE
+                }
+                if(item.location?.isNotEmpty()!!) {
+                    mLocation?.text = item.location
+                } else {
+                    val layout: LinearLayout = view.findViewById(R.id.layout_location)
+                    layout.visibility = View.GONE
+                }
+                if(item.note?.isNotEmpty()!!) {
+                    mNote?.text = item.note
+                } else {
+                    val layout: LinearLayout = view.findViewById(R.id.layout_note)
+                    layout.visibility = View.GONE
                 }
                 mName?.text = item.name
-                mLocation?.text = item.location
                 mType?.text = converter.convertRestaurantTypeEnum(item.type);
-                mNote?.text = item.note
                 setRating(mFinalRating, item.ratingFinal)
                 setRating(mFoodRating, item.ratingFood)
                 setRating(mPersonellRating, item.ratingPersonnel)

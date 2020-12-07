@@ -62,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_info">
 
@@ -72,7 +73,6 @@
             android:id="@+id/image_restaurant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:contentDescription="@string/restaurant_picture"
             android:src="@drawable/ic_image"
             android:scaleType="fitCenter"

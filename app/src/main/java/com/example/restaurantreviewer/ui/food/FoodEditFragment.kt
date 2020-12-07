@@ -25,6 +25,7 @@ import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
 import com.example.restaurantreviewer.utils.JsonConverters
 import com.example.restaurantreviewer.utils.RatingInputFilter
+import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_add_food.view.*
 import kotlinx.android.synthetic.main.fragment_edit_food.*
@@ -152,7 +153,7 @@ class FoodEditFragment : Fragment() {
             food.observe(viewLifecycleOwner, Observer { item ->
                 selectedFood = item
                 mName?.setText(item.name)
-                if(item.image != null) {
+                if(item.image?.isNotEmpty() == true) {
                     Picasso.with(context).load(Uri.parse(item.image))
                         .fit()
                         .centerCrop()
@@ -280,6 +281,7 @@ class FoodEditFragment : Fragment() {
                 Picasso.with(context).load(mImageUri)
                     .fit()
                     .centerCrop()
+                        .transform(TransformRoundedImage())
                     .into(mImageView)
                 mButtonDeleteImage?.visibility = View.VISIBLE
             }

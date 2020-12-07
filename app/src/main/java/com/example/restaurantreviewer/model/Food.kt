@@ -14,7 +14,7 @@ import java.util.*
         foreignKeys = [ForeignKey(entity = Restaurant::class,
             parentColumns = arrayOf("Id"),
             childColumns = arrayOf("RestaurantId"),
-            onDelete = ForeignKey.SET_NULL)]
+            onDelete = ForeignKey.CASCADE)]
 )
 class Food() {
     @ColumnInfo(name = "Id")

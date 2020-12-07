@@ -7,6 +7,8 @@ import android.view.*
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.adapters.FoodAdapter
 import com.example.restaurantreviewer.adapters.RestaurantAdapter
@@ -88,6 +90,7 @@ class ListOptionsFoodDialog(adapter: FoodAdapter) : DialogFragment() {
 
         mButtonApply.setOnClickListener {
             applyListOptions(view)
+            this.findNavController().navigate(R.id.navigation_food)
             dialog?.dismiss()
         }
 
@@ -148,6 +151,7 @@ class ListOptionsFoodDialog(adapter: FoodAdapter) : DialogFragment() {
         when(filter) {
             FoodFilterEnum.NONE -> {
                 mValueLayout.visibility = View.GONE
+                filterVal = ""
             }
             FoodFilterEnum.RATING_LESS -> {
                 mValueLayout.visibility = View.VISIBLE

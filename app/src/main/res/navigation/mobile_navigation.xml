@@ -50,6 +50,9 @@
             android:id="@+id/action_navigation_food_to_foodEditFragment"
             app:destination="@id/foodEditFragment"
             app:popUpTo="@id/navigation_food" />
+        <action
+            android:id="@+id/action_navigation_food_to_listOptionsFoodDialog"
+            app:destination="@id/listOptionsFoodDialog" />
     </fragment>
 
     <fragment
@@ -93,5 +96,9 @@
         android:name="com.example.restaurantreviewer.ui.restaurants.ListOptionsRestaurantDialog"
         android:label="LIST RESTAURANTS"
         tools:layout="@layout/list_options_layout" />
+    <dialog
+        android:id="@+id/listOptionsFoodDialog"
+        android:name="com.example.restaurantreviewer.ui.food.ListOptionsFoodDialog"
+        android:label="ListOptionsFoodDialog" />
 
 </navigation>

@@ -21,6 +21,7 @@ import com.example.restaurantreviewer.model.Food
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
 import com.example.restaurantreviewer.utils.JsonConverters
+import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -65,7 +66,7 @@ class FoodAdapter(
 
         fun bind(food: Food, previous: Food?, context: Context) {
             mHeaderView?.visibility = View.GONE
-            var restaurantName = restaurantList.find{ it.id == food.restaurantId }?.name
+            val restaurantName: String? = restaurantList.find{ it.id == food.restaurantId }?.name
             setHeader(food, previous, mHeaderView)
             mNameView?.text = if(food.name.length > 20) food.name.substring(0,20) + "..." else food.name
             mRestaurant?.text = if(restaurantName?.length!! >= 20) restaurantName.substring(0,20) + "..." else restaurantName
@@ -73,6 +74,7 @@ class FoodAdapter(
                 .with(context)
                 .load(Uri.parse(food.image))
                 .fit()
+                    .transform(TransformRoundedImage())
                 .into(mImageView)
             setRating(food, mRating)
 
@@ -162,9 +164,9 @@ class FoodAdapter(
         foodList.clear()
         foodList.addAll(newList)
         restaurantList.clear()
-        restaurantList.addAll(restaurants.asReversed())
+        restaurantList.addAll(restaurants)
         copyList.clear()
-        copyList.addAll(newList.asReversed())
+        copyList.addAll(newList)
         applyChangesToList()
         this.notifyDataSetChanged()
     }
@@ -195,13 +197,24 @@ class FoodAdapter(
     }
 
     fun applyChangesToList() {
+        if(copyList.isEmpty()) return
         applyFilter()
+        var list: MutableList<Food> = mutableListOf()
         if(grouping == FoodGroupingEnum.RESTAURANT) {
-            foodList.sortedWith(compareBy({ it.restaurantId }, { it.name }))
+            val typeComparator = compareBy<Food> ({ it.restaurantId }, { it.created })
+            list.addAll(foodList)
+            list.sortWith(typeComparator)
 
         } else {
-            foodList.sortedWith(compareBy({ it.created }, { it.name }))
+            val createdComparator = compareBy <Food> ({ it.created }, { it.name })
+            list.addAll(foodList)
+            list.sortWith(createdComparator)
+            list = list.asReversed()
         }
+        foodList.clear()
+        copyList.clear()
+        foodList.addAll(list)
+        copyList.addAll(list)
         notifyDataSetChanged()
     }
 

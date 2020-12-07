@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dark_gray"
     android:fillViewport="true"
@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -21,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
             android:drawableTint="@color/white"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
@@ -35,8 +35,9 @@
             android:id="@+id/layout_image_restaurant"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_restaurant">
 
@@ -44,10 +45,9 @@
                 android:id="@+id/image_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:contentDescription="@string/restaurant_picture"
-                android:src="@drawable/ic_image"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

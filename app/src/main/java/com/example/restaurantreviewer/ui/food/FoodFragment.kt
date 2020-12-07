@@ -14,11 +14,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantreviewer.R
 import com.example.restaurantreviewer.adapters.FoodAdapter
+import com.example.restaurantreviewer.adapters.RestaurantAdapter
 import com.example.restaurantreviewer.enums.*
+import com.example.restaurantreviewer.model.Food
 import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
 import com.example.restaurantreviewer.utils.JsonConverters
 import kotlinx.android.synthetic.main.fragment_food.*
+import kotlinx.android.synthetic.main.fragment_restaurants.*
 
 class FoodFragment : Fragment() {
 
@@ -64,14 +67,13 @@ class FoodFragment : Fragment() {
         sharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)!!
         converters = EnumConverters(requireContext())
         setUpPreferences()
-        filterIfClickedRestaurant()
         foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
         foodAdapter = FoodAdapter(mutableListOf(), mutableListOf())
         foodViewModel.mListFood.observe(viewLifecycleOwner, Observer { food ->
             foodViewModel.mListRestaurant.observe(viewLifecycleOwner, Observer { rest ->
-                foodAdapter.setData(food, rest)
-                applyPreferences(foodAdapter)
+                foodAdapter = FoodAdapter(food, rest)
                 recycler_food.adapter = foodAdapter
+                applyPreferences(recycler_food.adapter as FoodAdapter)
             })
         })
 
@@ -107,6 +109,7 @@ class FoodFragment : Fragment() {
         recycler_food.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = foodAdapter
+            applyPreferences(recycler_food.adapter as FoodAdapter)
         }
     }
 
@@ -150,6 +153,7 @@ class FoodFragment : Fragment() {
                         converters.convertFoodFilterEnum(FoodFilterEnum.NONE))!!),
                 sharedPreferences.getString("filterVal_food", "")!!)
 
+        filterIfClickedRestaurant()
         adapter.applyChangesToList()
     }
 

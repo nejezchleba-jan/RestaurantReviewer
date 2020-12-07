@@ -31,6 +31,7 @@
     <string name="add_food">Add food</string>
     <string name="restaurant_picture">Restaurant picture</string>
     <string name="delete_food">Delete food</string>
+    <string name="restaurant_delete_message">This action will delete all associated food.</string>
     <string name="confirm_edit">Confirm edit</string>
     <string name="about">ABOUT</string>
     <string name="list_options">List options</string>
