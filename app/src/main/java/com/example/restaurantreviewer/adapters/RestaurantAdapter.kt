@@ -216,15 +216,17 @@ class RestaurantAdapter(
         var list: MutableList<Restaurant> = mutableListOf()
         if(grouping == RestaurantGroupingEnum.TYPE) {
             val typeComparator = compareBy<Restaurant> ({ it.type }, { it.name })
-            list.addAll(restaurantList)
+            list.addAll(copyList)
             list.sortWith(typeComparator)
+            list = list
 
         } else {
             val createdComparator = compareBy<Restaurant> ({ it.created }, { it.name })
-            list.addAll(restaurantList)
+            list.addAll(copyList)
             list.sortWith(createdComparator)
-            list = list.asReversed()
+            list = list
         }
+        copyList.clear()
         copyList.addAll(list)
         applyFilter(converters)
         notifyDataSetChanged()
@@ -261,6 +263,7 @@ class RestaurantAdapter(
                 })
             }
         }
+        restaurantList.reverse()
         notifyDataSetChanged()
     }
 }

@@ -281,7 +281,6 @@ class FoodEditFragment : Fragment() {
                 Picasso.with(context).load(mImageUri)
                     .fit()
                     .centerCrop()
-                        .transform(TransformRoundedImage())
                     .into(mImageView)
                 mButtonDeleteImage?.visibility = View.VISIBLE
             }

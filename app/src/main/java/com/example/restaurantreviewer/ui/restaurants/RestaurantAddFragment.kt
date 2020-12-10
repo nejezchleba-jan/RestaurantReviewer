@@ -21,6 +21,7 @@ import com.example.restaurantreviewer.model.Restaurant
 import com.example.restaurantreviewer.utils.EnumConverters
 import com.example.restaurantreviewer.utils.TransformRoundedImage
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_detail_restaurant.*
 
 
 class RestaurantAddFragment : Fragment() {
@@ -136,12 +137,12 @@ class RestaurantAddFragment : Fragment() {
             android.R.layout.simple_spinner_item,
             items
         )
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item)
         spinner.adapter = spinnerArrayAdapter
     }
 
     private fun insertAction(view: View?) {
-        val converter = EnumConverters(requireContext());
+        val converter = EnumConverters(requireContext())
         view?.let {
             mName = it.findViewById(R.id.text_name)
             mLocation = it.findViewById(R.id.text_location)
@@ -152,7 +153,7 @@ class RestaurantAddFragment : Fragment() {
             mLocationRating = it.findViewById(R.id.rate_location)
             mAtmosphereRating = it.findViewById(R.id.rate_atmosphere)
 
-            val newRest: Restaurant = Restaurant()
+            val newRest = Restaurant()
             newRest.image = mImageUri.toString()
             newRest.name = mName?.editableText.toString()
             newRest.location = mLocation?.editableText.toString()

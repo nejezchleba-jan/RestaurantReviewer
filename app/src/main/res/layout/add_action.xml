@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/rounded_item"
+        android:background="@drawable/add_button"
         android:backgroundTint="@color/orange"
         android:contentDescription="@string/add_restaurant"
         android:scaleX="1.3"

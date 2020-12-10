@@ -19,6 +19,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.supervisorScope
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_READ_STORAGE_REQUEST_CODE = 0
@@ -59,5 +60,6 @@ class MainActivity : AppCompatActivity() {
     private fun hasReadPermissions(): Boolean {
         return ContextCompat.checkSelfPermission(baseContext, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
     }
+
 }
 
