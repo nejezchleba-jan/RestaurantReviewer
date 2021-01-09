@@ -42,7 +42,7 @@ class NotificationsFragment : Fragment() {
 
             activity?.runOnUiThread{
                 mFoodCount.text = notificationsViewModel.mListFoodCount.toString()
-                mRestaurantCount.text = notificationsViewModel.mListFoodCount.toString()
+                mRestaurantCount.text = notificationsViewModel.mListRestaurantCount.toString()
             }
         }
     }

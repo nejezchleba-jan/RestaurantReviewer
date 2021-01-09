@@ -58,7 +58,7 @@
     <string name="cancel">Zrušit</string>
     <string name="toast_empty_name">Prázdné jméno!</string>
     <string name="group_by">Seskupit podle:</string>
-    <string name="filter_value">Hodnota flltru:</string>
+    <string name="filter_value">Hodnota filtru:</string>
     <string name="list_order">Řazení seznamu</string>
     <string name="filter_by">Filtrovat podle:</string>
     <string name="filter">Filtr</string>
@@ -66,4 +66,9 @@
     <string name="filter_restaurant">Restaurace</string>
     <string name="filter_rating_less">Nižší hodnocení</string>
     <string name="filter_rating_more">Vyšší hodnocení</string>
+    <string name="statistics">Statistics</string>
+    <string name="export_import_reviews">Export/Import recenzí</string>
+    <string name="export">Exportovat</string>
+    <string name="import_text">Importovat</string>
+    <string name="about_menu">O aplikaci</string>
 </resources>
